@@ -1,2 +1,2 @@
-# maxblog-devops
-maxblog-devops
+# MaxBlog DevOps
+
