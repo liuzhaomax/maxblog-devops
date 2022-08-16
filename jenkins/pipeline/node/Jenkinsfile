@@ -4,12 +4,7 @@ String workspace = '/opt/jenkins/workspace'
 
 pipeline {
     // 指定集群节点
-    agent {
-        node {
-            label 'main'
-            customWorkspace '${workspace}'
-        }
-    }
+    agent any
     // 选项
     options {
         timestamps() //日志会有时间
