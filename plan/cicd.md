@@ -119,8 +119,15 @@ sudo docker logs -f jenkins
 设置用户名密码。根据提示操作，直到进入到Welcome界面。
 
 ### 2.2 安装重要插件
-`Manage Jenkins` → `Manage Plugins` → `Available` → `Search` `Git Parameter` → 勾选 → 
-`Search` `Publish Over SSH` → 勾选 → 点击`Install without restart`
+`Manage Jenkins` → `Manage Plugins` → `Available` → 
+
+`Search` `Git Parameter` → 勾选 → 
+
+`Search` `Publish Over SSH` → 勾选 →
+
+`Search` `NodeJS` → 勾选 → 
+
+点击`Install without restart`
 
 
 ## 3. 流水线Pipeline
