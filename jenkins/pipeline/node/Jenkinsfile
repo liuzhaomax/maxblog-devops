@@ -30,7 +30,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 timeout(time: 5, unit: "MINUTES"){
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/liuzhaomax/maxblog-fe-main.git']]])
+//                     checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/liuzhaomax/maxblog-fe-main.git']]])
                     script{
                         tools.PrintMsg("我的共享lib")
                     }
