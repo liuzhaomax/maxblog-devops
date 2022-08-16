@@ -11,6 +11,10 @@
 + 内存：1G
 + 硬盘空间：30G
 + 操作系统：Centos7.9
+```shell
+# RSA密钥生成命令，在.ssh文件夹里
+ssh-keygen -t rsa -b 4096
+```
 
 ### 1.2 必备工具 - jdk，node，go
 ```shell
