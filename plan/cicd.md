@@ -23,14 +23,24 @@ cd pkg
 # jdk8u333
 tar -zxvf jdk-8u333-linux-aarch64.tar.gz -C /home/opc/tools
 # node-v16
-tar -zxvf node-v16.16.0.tar.gz -C /home/opc/tools
+tar xf node-v16.17.0-linux-x64.tar.xz -C /home/opc/tools
 # go1.17
 tar -zxvf go1.17.5.linux-amd64.tar.gz -C /home/opc/tools
 
 # 修改文件名 （go不用改）
 cd /home/opc/tools
 mv jdk1.8.0_333 jdk
-mv node-v16.16.0 node
+mv node-v16.17.0-linux-x64 node
+
+# 修改环境变量
+sudo vi /etc/profile
+# 找到export，在PATH变量上面一行加入
+export NODE_HOME=/home/opc/tools/node
+export GO_HOME=/home/opc/tools/go
+# 整合PATH行
+export PATH=$PATH:$NODE_HOME/bin:$GO_HOME/bin
+# 载入环境变量
+source /etc/profile
 ```
 
 ### 1.3 必备工具 - docker，docker-compose
