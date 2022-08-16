@@ -118,15 +118,19 @@ sudo docker logs -f jenkins
 ### 3.1 创建流水线
 `New Item` → 输入名称 → `Pipeline` → OK
 
-编写流水线脚本框架，并粘贴入Script区域
-
 ![流水线脚本.png](cicd/流水线脚本.png)
 
 在图中`Pipeline Syntax`可进入生成指定功能脚本的页面，比如checkout功能的脚本
 
 ![生成语法.png](cicd/生成语法.png)
 
-点击`Generate Pipeline Script`，复制代码。
+点击`Generate Pipeline Script`，复制粘贴代码到Jenkinsfile中。
+
+回到Pipeline配置区域 → 选择`Pipeline script from SCM` → 选择`Git`
+
+![配置流水线脚本地址.png](cicd/配置流水线脚本地址.png)
+
+
 
 
 
