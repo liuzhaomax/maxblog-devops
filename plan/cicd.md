@@ -130,6 +130,16 @@ sudo docker logs -f jenkins
 
 ![配置流水线脚本地址.png](cicd/配置流水线脚本地址.png)
 
+> 注意：Script Path第一个字符不要"/"
+
+### 3.2 拉取代码
+来到项目的Configure，按图中点击
+
+![参数化构建.png](cicd/参数化构建.png)
+![配置代码仓库信息.png](cicd/配置代码仓库信息.png)
+
+转到`Pipeline Syntax`生成语法
+
 
 
 
