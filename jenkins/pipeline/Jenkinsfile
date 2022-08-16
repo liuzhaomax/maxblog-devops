@@ -1,0 +1,74 @@
+//#!groovy
+pipeline {
+    // 指定集群节点
+    agent any
+
+    // 声明全局变量
+    environment {
+        key = 'value'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/liuzhaomax/maxblog-fe-template.git']]])
+                echo 'Checkout - SUCCESS'
+            }
+        }
+        stage('Update GitHub') {
+            steps {
+                echo 'Update GitHub - SUCCESS'
+            }
+        }
+        stage('Change Node Version') {
+            steps {
+                echo 'Change Node Version - SUCCESS'
+            }
+        }
+        stage('App Version') {
+            steps {
+                echo 'App Version - SUCCESS'
+            }
+        }
+        stage('Lint') {
+            steps {
+                echo 'Lint - SUCCESS'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Build - SUCCESS'
+            }
+        }
+        stage('Static Analysis') {
+            steps {
+                echo 'Static Analysis - SUCCESS'
+            }
+        }
+        stage('SonarQube') {
+            steps {
+                echo 'SonarQube - SUCCESS'
+            }
+        }
+        stage('Nessus') {
+            steps {
+                echo 'Nessus - SUCCESS'
+            }
+        }
+        stage('Build Image') {
+            steps {
+                echo 'Build Image - SUCCESS'
+            }
+        }
+        stage('Git Tag') {
+            steps {
+                echo 'Git Tag - SUCCESS'
+            }
+        }
+        stage('Package Config') {
+            steps {
+                echo 'Package Config - SUCCESS'
+            }
+        }
+    }
+}
