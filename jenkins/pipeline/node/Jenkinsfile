@@ -55,7 +55,10 @@ pipeline {
                     sh """
                         export NODE_HOME=${npmHome}
                         export PATH=\$NODE_HOME/bin:\$PATH
-                        ${npmHome}/bin/npm ${buildShell}
+                        ${npmHome}/bin/npm run lint:js -- --fix
+                        ${npmHome}/bin/npm install
+                        ${npmHome}/bin/npm run build
+                        ${npmHome}/bin/npm test
                     """
                 }
                 echo '--------------------- Build End ---------------------'
