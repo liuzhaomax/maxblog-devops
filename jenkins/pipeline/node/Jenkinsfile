@@ -83,7 +83,16 @@ pipeline {
         stage('Lint') {
             steps {
                 echo '--------------------- Lint Start ---------------------'
-                echo 'Lint - SUCCESS'
+                script {
+                    timeout(time: 10, unit: "MINUTES"){
+                        npmHome = tool "npm"
+                        sh """
+                            export NODE_HOME=${npmHome}
+                            export PATH=\$NODE_HOME/bin:\$PATH
+                            ${npmHome}/bin/npm run lint
+                        """
+                    }
+                }
                 echo '--------------------- Lint End ---------------------'
             }
         }
@@ -100,8 +109,8 @@ pipeline {
                             rm -rf server/build
                             rm -rf node_modules package-lock.json server/node_modules server/package-lock.json
                             npm cache clear --force
-                            node -v
-                            npm -v
+                            node --version
+                            npm --version
                             ${npmHome}/bin/npm install
                             ${npmHome}/bin/npm run build
                             cd server
