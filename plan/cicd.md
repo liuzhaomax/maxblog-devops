@@ -45,6 +45,9 @@ export GO_HOME=/home/opc/tools/go
 export PATH=$PATH:$NODE_HOME/bin:$GO_HOME/bin
 # 载入环境变量
 source /etc/profile
+
+# 全局安装npm
+npm install -g npm
 ```
 
 ### 1.3 必备工具 - docker，docker-compose
@@ -132,6 +135,30 @@ sudo docker logs -f jenkins
 `Search` `NodeJS` → 勾选 → 
 
 点击`Install without restart`
+
+### 2.3 挂载jdk
+```shell
+mv /home/opc/tools/jdk /home/opc/docker/jenkins_docker/data
+```
+回到浏览器jenkins的`Dashboard` → `Global Tool Configuration` → `JDK` → `Add JDK`，取消自动安装，按下图填写。
+
+![挂载jdk.png](cicd/挂载jdk.png)
+
+### 2.4 挂载nodejs
+```shell
+mv /home/opc/tools/node /home/opc/docker/jenkins_docker/data
+```
+回到浏览器jenkins的`Dashboard` → `Global Tool Configuration` → `NodeJS` → `NodeJS`，取消自动安装，按下图填写。
+
+![挂载nodejs.png](cicd/挂载nodejs.png)
+
+### 2.5 连接代码仓库
+`Dashboard` → `Configure System`，找到`Publish over SSH`，点击`Add`
+
+![连接代码仓库.png](cicd/连接代码仓库.png)
+这个username是远程服务器的username，密码和私钥也是连接那个服务器用的。
+
+`Test Configuration`测试是否跑通。如果提示路径问题，注意mkdir。显示SUCCESS则保存。
 
 
 ## 3. 流水线Pipeline

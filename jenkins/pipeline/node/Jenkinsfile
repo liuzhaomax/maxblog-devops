@@ -47,7 +47,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Build - SUCCESS'
+                script {
+                    npmHome = tool "npm"
+                    sh "${npmHome}/bin/npm"
+                }
             }
         }
         stage('Static Analysis') {
