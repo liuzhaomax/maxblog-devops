@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script {
                     npmHome = tool "npm"
-                    sh "${npmHome}/bin/npm"
+                    sh "export NODE_HOME=${npmHome} && export PATH=\$NODE_HOME/bin:\$PATH && ${npmHome}/bin/npm"
                 }
             }
         }
