@@ -70,9 +70,9 @@ pipeline {
 //         }
         // 检查App版本
         stage('App Version') {
-            when {
-                // CD构建起作用
-            }
+//             when {
+//                 // CD构建起作用
+//             }
             steps {
                 echo '--------------------- App Version Start ---------------------'
                 echo 'App Version - SUCCESS'
