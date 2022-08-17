@@ -1,6 +1,6 @@
 //#!groovy
 
-String buildShell = "${env.buildShell}"
+// String buildShell = "${env.buildShell}"
 
 pipeline {
     // 指定集群节点
@@ -18,6 +18,7 @@ pipeline {
     }
     // 流水线阶段
     stages {
+        // 拉取代码
         stage('Checkout') {
             steps {
                 echo '--------------------- Checkout Start ---------------------'
@@ -27,26 +28,66 @@ pipeline {
                 echo '--------------------- Checkout End ---------------------'
             }
         }
-        stage('Update GitHub') {
-            steps {
-                echo 'Update GitHub - SUCCESS'
-            }
-        }
-        stage('Change Node Version') {
-            steps {
-                echo 'Change Node Version - SUCCESS'
-            }
-        }
-        stage('App Version') {
-            steps {
-                echo 'App Version - SUCCESS'
-            }
-        }
+        // 本地github会用到
+//         stage('Update GitHub') {
+//             steps {
+//                 echo '--------------------- Update GitHub Start ---------------------'
+//                 script {
+//                     timeout(time: 20, unit: "MINUTES"){
+//                         sh """
+//                             git config --get remote.origin.url
+//                             tr -d
+//                             git rev-parse HEAD
+//                         """
+//                         // setting commit status
+//                     }
+//                 }
+//                 echo '--------------------- Update GitHub End ---------------------'
+//             }
+//         }
+        // 设置环境，建议跳过
+//         stage('Change Node Version') {
+//             steps {
+//                 echo 'Change Node Version - SUCCESS'
+//             }
+//         }
+//         stage('Change Golang Version') {
+//             steps {
+//                 echo '--------------------- Change Golang Version Start ---------------------'
+//                 script {
+//                     timeout(time: 20, unit: "MINUTES"){
+//                         sh """
+//                             grep "^go .*" go.mod
+//                             cut -f 2 -d
+//                         """
+//                         // echo go version
+//                         // 赋予go env sh 执行权限
+//                         // run set go env sh
+//                     }
+//                 }
+//                 echo '--------------------- Change Golang Version End ---------------------'
+//             }
+//         }
+        // 检查App版本
+//         stage('App Version') {
+//             when {
+//                 // CD构建起作用
+//             }
+//             steps {
+//                 echo '--------------------- App Version Start ---------------------'
+//                 echo 'App Version - SUCCESS'
+//                 echo '--------------------- App Version End ---------------------'
+//             }
+//         }
+        // 语法格式检查
         stage('Lint') {
             steps {
+                echo '--------------------- Lint Start ---------------------'
                 echo 'Lint - SUCCESS'
+                echo '--------------------- Lint End ---------------------'
             }
         }
+        // 构建
         stage('Build') {
             steps {
                 echo '--------------------- Build Start ---------------------'
@@ -56,9 +97,22 @@ pipeline {
                         sh """
                             export NODE_HOME=${npmHome}
                             export PATH=\$NODE_HOME/bin:\$PATH
+                            rm -rf server/build
+                            rm -rf node_modules package-lock.json server/node_modules server/package-lock.json
+                            npm cache clear --force
+                            node -v
+                            npm -v
                             ${npmHome}/bin/npm install
                             ${npmHome}/bin/npm run build
+                            cd server
+                            ${npmHome}/bin/npm install
                         """
+                        // tar -zcvf 文件名.tar.gz 打包
+                        // cd到别处
+                        // rm -rf *
+                        // mv 路径/server/文件名.tar.gz ./
+                        // tar -zxvf 文件名.tar.gz -C ./  解压缩
+                        // rm -rf 文件名.tar.gz  删除压缩包
                     }
                 }
                 echo '--------------------- Build End ---------------------'
