@@ -51,15 +51,17 @@ pipeline {
             steps {
                 echo '--------------------- Build Start ---------------------'
                 script {
-                    npmHome = tool "npm" //变量名npm在jenkins全局工具里定义的
-                    sh """
-                        export NODE_HOME=${npmHome}
-                        export PATH=\$NODE_HOME/bin:\$PATH
-                        ${npmHome}/bin/npm run lint -- --fix
-                        ${npmHome}/bin/npm install
-                        ${npmHome}/bin/npm run build
-                        ${npmHome}/bin/npm test
-                    """
+                    timeout(time: 30, unit: "MINUTES"){
+                        npmHome = tool "npm" //变量名npm在jenkins全局工具里定义的
+                        sh """
+                            export NODE_HOME=${npmHome}
+                            export PATH=\$NODE_HOME/bin:\$PATH
+                            ${npmHome}/bin/npm run lint -- --fix
+                            ${npmHome}/bin/npm install
+                            ${npmHome}/bin/npm run build
+                            ${npmHome}/bin/npm test
+                        """
+                    }
                 }
                 echo '--------------------- Build End ---------------------'
             }
