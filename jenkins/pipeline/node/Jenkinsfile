@@ -69,16 +69,16 @@ pipeline {
 //             }
 //         }
         // 检查App版本
-//         stage('App Version') {
-//             when {
-//                 // CD构建起作用
-//             }
-//             steps {
-//                 echo '--------------------- App Version Start ---------------------'
-//                 echo 'App Version - SUCCESS'
-//                 echo '--------------------- App Version End ---------------------'
-//             }
-//         }
+        stage('App Version') {
+            when {
+                // CD构建起作用
+            }
+            steps {
+                echo '--------------------- App Version Start ---------------------'
+                echo 'App Version - SUCCESS'
+                echo '--------------------- App Version End ---------------------'
+            }
+        }
         // 语法格式检查
         stage('Lint') {
             steps {
@@ -127,19 +127,20 @@ pipeline {
                 echo '--------------------- Build End ---------------------'
             }
         }
-        stage('Static Analysis') {
-            steps {
-                echo 'Static Analysis - SUCCESS'
-            }
-        }
+        // 静态代码分析SonarQube
         stage('SonarQube') {
             steps {
+                echo '--------------------- SonarQube Start ---------------------'
                 echo 'SonarQube - SUCCESS'
+                echo '--------------------- SonarQube End ---------------------'
             }
         }
+        // 安全漏洞扫描Nessus
         stage('Nessus') {
             steps {
+                echo '--------------------- Nessus Start ---------------------'
                 echo 'Nessus - SUCCESS'
+                echo '--------------------- Nessus End ---------------------'
             }
         }
         stage('Build Image') {
