@@ -188,7 +188,118 @@ mv /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 
 转到`Pipeline Syntax`生成语法
 
+### 3.3 静态代码分析
+SonarQube 8.9.9
+```shell
+# 拉取镜像
+sudo docker pull postgres
+sudo docker pull sonarqube:8.9.9-community
+# 创建docker-compose.yaml并运行
+cd /home/opc/docker
+mkdir sonarqube_docker
+cd sonarqube_docker
+# 粘贴入此路径，然后执行命令
+sudo docker-compose up -d
+# 查看日志
+sudo docker logs -f sonarqube
+# 有两个ERROR，扩增虚拟内存
+sudo vi /etc/sysctl.conf
+# 在注释后面增加如下，并保存
+vm.max_map_count=262144
+# 执行生效
+sudo sysctl -p
+# 重启容器
+sudo docker-compose up -d
+# 查看日志，还有错也没办法
+sudo docker logs -f sonarqube
+```
 
+```yaml
+version: "3.1"
+services:
+  db:
+    image: postgres
+    container_name: db
+    ports:
+      - 5432:5432
+    networks:
+      - sonarnet
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+  sonarqube:
+    image: sonarqube:8.9.9-community
+    container_name: sonarqube
+    depends_on:
+      - db
+    ports:
+      - 9001:9000
+    networks:
+      - sonarnet
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+networks:
+  sonarnet:
+    driver: bridge
+```
 
+在浏览器输入ip和预设端口号，sonarqube初始账户和密码都是`admin`
 
+按提示操作，到能看到面板为止。
 
+下载 `sonar-scanner-cli-4.6.0.2311-linux.zip`
+> https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/
+
+```shell
+# 安装解压zip工具
+sudo yum -y install unzip
+# 解压
+cd /home/opc/pkg
+unzip sonar-scanner-cli-4.6.0.2311-linux.zip
+mv sonar-scanner-4.6.0.2311-linux/ sonar-scanner
+# 移动sonar-scanner到jenkins挂载卷目录
+mv ~/pkg/sonar-scanner /home/opc/docker/jenkins_docker/data
+# 配置sonar-scanner
+cd /home/opc/docker/jenkins_docker/data/sonar-scanner/conf
+vi sonar-scanner.properties
+```
+撤销注释并修改 `sonar.host.url=http://宿主机ip:9001`<br/>
+撤销UTF-8注释
+
+给sonar-scanner设置token，来到浏览器sonar面板右上角
+
+![sonar-scanner设置token.png](cicd/sonar-scanner设置token.png)
+
+![sonar-scanner生成token.png](cicd/sonar-scanner生成token.png)
+
+```shell
+# 使用扫描命令
+cd /home/opc/docker/jenkins_docker/data/workspace
+cd main
+/home/opc/docker/jenkins_docker/data/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./ -Dsonar.projectname=maxblog-fe-main-main -Dsonar.login=2ec8956b73dda5a079832c03e791c08504afcca0 -Dsonar.projectKey=maxblog-fe-main-main
+```
+
+成功会看到
+
+![sonar-scanner成功.png](cicd/sonar-scanner成功.png)
+
+<h3>SonarQube加入流水线</h3>
+
+jenkins安装SonarQube Scanner插件
+
+`Dashboard` → `Configure System`，找到`SonarQube servers`，点击`Add`，注意添加token
+
+![img.png](cicd/配置sonarqube-server.png)
+
+![增加sonar的token.png](cicd/增加sonar的token.png)
+
+`Dashboard` → `Global Tool Configuration`，找到`SonarQube Scanner`，点击`Add`
+
+![添加sonar-scanner全局工具.png](cicd/添加sonar-scanner全局工具.png)
+
+修改流水线对应位置命令，注意命令bin是在容器内部的地址
+```shell
+/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./ -Dsonar.projectname=${JOB_NAME} -Dsonar.login=2ec8956b73dda5a079832c03e791c08504afcca0 -Dsonar.projectKey=${JOB_NAME}
+```
