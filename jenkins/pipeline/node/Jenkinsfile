@@ -89,7 +89,7 @@ pipeline {
                         sh """
                             export NODE_HOME=${npmHome}
                             export PATH=\$NODE_HOME/bin:\$PATH
-                            ${npmHome}/bin/npm run lint
+//                             ${npmHome}/bin/npm run lint
                         """
                     }
                 }
