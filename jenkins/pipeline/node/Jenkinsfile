@@ -80,29 +80,12 @@ pipeline {
             }
         }
         // 语法格式检查
-//         stage('Lint') {
-//             steps {
-//                 echo '--------------------- Lint Start ---------------------'
-//                 script {
-//                     timeout(time: 10, unit: "MINUTES"){
-//                         npmHome = tool "npm"
-//                         sh """
-//                             export NODE_HOME=${npmHome}
-//                             export PATH=\$NODE_HOME/bin:\$PATH
-//                             ${npmHome}/bin/npm run lint
-//                         """
-//                     }
-//                 }
-//                 echo '--------------------- Lint End ---------------------'
-//             }
-//         }
-        // 构建
-        stage('Build') {
+        stage('Lint') {
             steps {
-                echo '--------------------- Build Start ---------------------'
+                echo '--------------------- Lint Start ---------------------'
                 script {
-                    timeout(time: 30, unit: "MINUTES"){
-                        npmHome = tool "npm" //变量名npm在jenkins全局工具里定义的
+                    timeout(time: 10, unit: "MINUTES"){
+                        npmHome = tool "npm"
                         sh """
                             export NODE_HOME=${npmHome}
                             export PATH=\$NODE_HOME/bin:\$PATH
@@ -112,10 +95,26 @@ pipeline {
                             node --version
                             npm --version
                             ${npmHome}/bin/npm install
+                            ${npmHome}/bin/npm run lint
+                        """
+                    }
+                }
+                echo '--------------------- Lint End ---------------------'
+            }
+        }
+        // 构建
+        stage('Build') {
+            steps {
+                echo '--------------------- Build Start ---------------------'
+                script {
+                    timeout(time: 30, unit: "MINUTES"){
+                        npmHome = tool "npm" //变量名npm在jenkins全局工具里定义的
+                        sh """
                             ${npmHome}/bin/npm run build
 //                             ${npmHome}/bin/npm test
                             cd server
                             ${npmHome}/bin/npm install
+                            cd ..
                         """
                         // tar -zcvf 文件名.tar.gz 打包
                         // cd到别处
