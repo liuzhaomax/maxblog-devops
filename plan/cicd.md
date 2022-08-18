@@ -278,7 +278,7 @@ vi sonar-scanner.properties
 # 使用扫描命令
 cd /home/opc/docker/jenkins_docker/data/workspace
 cd main
-/home/opc/docker/jenkins_docker/data/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./ -Dsonar.projectname=maxblog-fe-main-main -Dsonar.login=2ec8956b73dda5a079832c03e791c08504afcca0 -Dsonar.projectKey=maxblog-fe-main-main
+/home/opc/docker/jenkins_docker/data/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./server -Dsonar.projectname=maxblog-fe-main-main -Dsonar.login=2ec8956b73dda5a079832c03e791c08504afcca0 -Dsonar.projectKey=maxblog-fe-main-main
 ```
 
 成功会看到
@@ -301,5 +301,5 @@ jenkins安装SonarQube Scanner插件
 
 修改流水线对应位置命令，注意命令bin是在容器内部的地址
 ```shell
-/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./ -Dsonar.projectname=${JOB_NAME} -Dsonar.login=2ec8956b73dda5a079832c03e791c08504afcca0 -Dsonar.projectKey=${JOB_NAME}
+/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./server -Dsonar.projectname=${JOB_NAME} -Dsonar.login=2ec8956b73dda5a079832c03e791c08504afcca0 -Dsonar.projectKey=${JOB_NAME}
 ```
