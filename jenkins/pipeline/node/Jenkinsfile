@@ -113,6 +113,7 @@ pipeline {
                             npm --version
                             ${npmHome}/bin/npm install
                             ${npmHome}/bin/npm run build
+                            ${npmHome}/bin/npm test
                             cd server
                             ${npmHome}/bin/npm install
                         """
