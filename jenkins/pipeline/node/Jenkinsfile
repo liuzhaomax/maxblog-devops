@@ -4,7 +4,12 @@
 
 pipeline {
     // 指定集群节点
-    agent any
+    agent {
+        docker {
+            image "node:16-alpine3.16"
+            args "-p 10080:80"
+        }
+    }
     // 选项
     options {
         timestamps() //日志会有时间
@@ -114,9 +119,9 @@ pipeline {
                             export PATH=\$NODE_HOME/bin:\$PATH
                             ${npmHome}/bin/npm run build
 //                             ${npmHome}/bin/npm test
-                            sudo cd server
+                            cd server
                             ${npmHome}/bin/npm install
-                            sudo cd ..
+                            cd ..
                         """
                         // tar -zcvf 文件名.tar.gz 打包
                         // cd到别处
