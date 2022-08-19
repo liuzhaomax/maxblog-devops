@@ -3,6 +3,7 @@ services:
   jenkins:
     image: 'jenkins/jenkins:2.319.3-lts'
     container_name: jenkins
+    privileged: true
     restart: always
     user: root
     ports:
