@@ -114,9 +114,9 @@ pipeline {
                             export PATH=\$NODE_HOME/bin:\$PATH
                             ${npmHome}/bin/npm run build
 //                             ${npmHome}/bin/npm test
-                            cd server
+                            sudo cd server
                             ${npmHome}/bin/npm install
-                            cd ..
+                            sudo cd ..
                         """
                         // tar -zcvf 文件名.tar.gz 打包
                         // cd到别处
