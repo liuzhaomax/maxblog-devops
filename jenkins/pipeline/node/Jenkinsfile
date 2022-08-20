@@ -94,7 +94,7 @@ pipeline {
                             npm cache clear --force
                             node --version
                             npm --version
-                            ${npmHome}/bin/npm install --save-dev eslint
+                            # ${npmHome}/bin/npm install
                             ${npmHome}/bin/npm run lint
                             ${npmHome}/bin/npm run lint:report
                         """
@@ -114,7 +114,7 @@ pipeline {
 //                             export NODE_HOME=${npmHome}
 //                             export PATH=\$NODE_HOME/bin:\$PATH
 //                             ${npmHome}/bin/npm run build
-// //                             ${npmHome}/bin/npm test
+//                             # ${npmHome}/bin/npm test
 //                             cd server
 //                             ${npmHome}/bin/npm install
 //                             cd ..
