@@ -100,12 +100,16 @@ services:
   jenkins:
     image: 'jenkins/jenkins:2.319.3-lts'
     container_name: jenkins
+    privileged: true
     restart: always
+    user: root
     ports:
       - '9000:8080'
       - '50000:50000'
     volumes:
       - './data:/var/jenkins_home'
+      - '/usr/bin/docker:/usr/bin/docker'
+      - '/var/run/docker.sock:/var/run/docker.sock'
 ```
 
 
@@ -217,9 +221,9 @@ sudo docker logs -f sonarqube
 ```yaml
 version: "3.1"
 services:
-  db:
+  sonar_db:
     image: postgres
-    container_name: db
+    container_name: sonar_db
     ports:
       - 5432:5432
     networks:
@@ -231,7 +235,7 @@ services:
     image: sonarqube:8.9.9-community
     container_name: sonarqube
     depends_on:
-      - db
+      - sonar_db
     ports:
       - 9001:9000
     networks:
@@ -240,6 +244,10 @@ services:
       SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
       SONAR_JDBC_USERNAME: sonar
       SONAR_JDBC_PASSWORD: sonar
+    volumes:
+      - '/home/opc/tools/node:/usr/bin/node'
+      - '/usr/bin/docker:/usr/bin/docker'
+      - '/var/run/docker.sock:/var/run/docker.sock'
 networks:
   sonarnet:
     driver: bridge
