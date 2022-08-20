@@ -24,7 +24,9 @@ services:
       SONAR_JDBC_USERNAME: sonar
       SONAR_JDBC_PASSWORD: sonar
     volumes:
-      - '/home/opc/tools/node:/usr/bin/node'
+      - '/home/opc/tools/node/bin/node:/usr/bin/node'
+      - '/home/opc/tools/node/bin/npm:/usr/bin/npm'
+      - '/home/opc/tools/node/bin/npx:/usr/bin/npx'
       - '/usr/bin/docker:/usr/bin/docker'
       - '/var/run/docker.sock:/var/run/docker.sock'
 networks:
