@@ -136,7 +136,7 @@ pipeline {
                 echo '--------------------- SonarQube Start ---------------------'
                 script {
                     timeout(time: 30, unit: "MINUTES"){
-                        sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./server -Dsonar.projectname=${JOB_NAME} -Dsonar.login=2ec8956b73dda5a079832c03e791c08504afcca0 -Dsonar.projectKey=${JOB_NAME}'
+                        sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./ -Dsonar.projectname=${JOB_NAME} -Dsonar.login=2ec8956b73dda5a079832c03e791c08504afcca0 -Dsonar.projectKey=${JOB_NAME}'
                     }
                 }
                 echo '--------------------- SonarQube End ---------------------'
