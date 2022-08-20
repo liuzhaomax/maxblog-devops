@@ -131,29 +131,29 @@ pipeline {
 //                 echo '--------------------- Build End ---------------------'
 //             }
 //         }
-        // 静态代码分析SonarQube
-        stage('SonarQube') {
-            steps {
-                echo '--------------------- SonarQube Start ---------------------'
-                script {
-                    timeout(time: 30, unit: "MINUTES"){
-                        sonarScannerHome = tool "sonar-scanner"
-                        sh """
-                            ${sonarScannerHome}/bin/sonar-scanner \
-                                -Dsonar.sources=./ \
-                                -Dsonar.projectname=${JOB_NAME} \
-                                -Dsonar.login=8ed4baf9ba0204179095df34597c503c4b857b8a \
-                                -Dsonar.projectKey=${JOB_NAME} \
-                                -Dsonar.nodejs.executable=/usr/bin/node \
-                                -Dsonar.inclusions=src/**/*.js,src/**/*.jsx \
-                                -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/* \
-                                -Dsonar.qualitygate.wait=true
-                        """
-                    }
-                }
-                echo '--------------------- SonarQube End ---------------------'
-            }
-        }
+//         // 静态代码分析SonarQube
+//         stage('SonarQube') {
+//             steps {
+//                 echo '--------------------- SonarQube Start ---------------------'
+//                 script {
+//                     timeout(time: 20, unit: "MINUTES"){
+//                         sonarScannerHome = tool "sonar-scanner"
+//                         sh """
+//                             ${sonarScannerHome}/bin/sonar-scanner \
+//                                 -Dsonar.sources=./ \
+//                                 -Dsonar.projectname=${JOB_NAME} \
+//                                 -Dsonar.login=8ed4baf9ba0204179095df34597c503c4b857b8a \
+//                                 -Dsonar.projectKey=${JOB_NAME} \
+//                                 -Dsonar.nodejs.executable=/usr/bin/node \
+//                                 -Dsonar.inclusions=src/**/*.js,src/**/*.jsx \
+//                                 -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/* \
+//                                 -Dsonar.qualitygate.wait=true
+//                         """
+//                     }
+//                 }
+//                 echo '--------------------- SonarQube End ---------------------'
+//             }
+//         }
         // 安全漏洞扫描Nessus
         stage('Nessus') {
             steps {
