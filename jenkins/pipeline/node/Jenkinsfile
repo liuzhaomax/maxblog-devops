@@ -137,7 +137,11 @@ pipeline {
                 echo '--------------------- SonarQube Start ---------------------'
                 script {
                     timeout(time: 30, unit: "MINUTES"){
-                        sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.sources=./ -Dsonar.projectname=${JOB_NAME} -Dsonar.login=8ed4baf9ba0204179095df34597c503c4b857b8a -Dsonar.projectKey=${JOB_NAME} -Dsonar.nodejs.executable=/usr/bin/node'
+                        sonarScannerHome = tool "sonar-scanner"
+                        sh '${sonarScannerHome}/bin/sonar-scanner -Dsonar.sources=./ -Dsonar.projectname=${JOB_NAME} -Dsonar.login=8ed4baf9ba0204179095df34597c503c4b857b8a -Dsonar.projectKey=${JOB_NAME} -Dsonar.nodejs.executable=/usr/bin/node'
+                        if (waitForQualityGate().status == "ERROR") {
+                            error('Pipeline aborted due to quality gate failure.')
+                        }
                     }
                 }
                 echo '--------------------- SonarQube End ---------------------'
