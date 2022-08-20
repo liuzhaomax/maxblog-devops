@@ -1,8 +1,8 @@
 version: "3.1"
 services:
-  sonar-db:
+  sonar_db:
     image: postgres
-    container_name: db
+    container_name: sonar_db
     ports:
       - 5432:5432
     networks:
@@ -14,7 +14,7 @@ services:
     image: sonarqube:8.9.9-community
     container_name: sonarqube
     depends_on:
-      - db
+      - sonar_db
     ports:
       - 9001:9000
     networks:
@@ -23,6 +23,10 @@ services:
       SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
       SONAR_JDBC_USERNAME: sonar
       SONAR_JDBC_PASSWORD: sonar
+    volumes:
+      - '/home/opc/tools/node:/usr/bin/node'
+      - '/usr/bin/docker:/usr/bin/docker'
+      - '/var/run/docker.sock:/var/run/docker.sock'
 networks:
   sonarnet:
     driver: bridge
