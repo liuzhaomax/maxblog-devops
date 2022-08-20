@@ -148,10 +148,7 @@ pipeline {
                                 -Dsonar.inclusions=src/**/*.js,src/**/*.jsx \
                                 -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/*
                         """
-                        def qg = waitForQualityGate()
-                        if (qg.status != "OK") {
-                            error "Pipeline aborted due to quality gate failure."
-                        }
+                        waitForQualityGate abortPipeline: true
                     }
                 }
                 echo '--------------------- SonarQube End ---------------------'
