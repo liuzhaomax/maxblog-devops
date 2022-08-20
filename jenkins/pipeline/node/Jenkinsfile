@@ -148,7 +148,6 @@ pipeline {
                                 -Dsonar.inclusions=src/**/*.js,src/**/*.jsx \
                                 -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/*
                         """
-                        waitForQualityGate abortPipeline: true
                     }
                 }
                 echo '--------------------- SonarQube End ---------------------'
