@@ -293,7 +293,8 @@ cd main
     -Dsonar.projectKey=${JOB_NAME} \
     -Dsonar.nodejs.executable=/usr/bin/node \
     -Dsonar.inclusions=src/**/*.js,src/**/*.jsx \
-    -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/*
+    -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/* \
+    -Dsonar.qualitygate.wait=true
 ```
 
 成功会看到
@@ -323,7 +324,8 @@ jenkins安装SonarQube Scanner插件
     -Dsonar.projectKey=${JOB_NAME} \
     -Dsonar.nodejs.executable=/usr/bin/node \
     -Dsonar.inclusions=src/**/*.js,src/**/*.jsx \
-    -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/*
+    -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/* \
+    -Dsonar.qualitygate.wait=true
 ```
 
 <h3>设置代码质量标准</h3>
