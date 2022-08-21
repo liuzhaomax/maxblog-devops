@@ -165,34 +165,34 @@ pipeline {
 //                 echo '--------------------- Checkmarx End ---------------------'
 //             }
 //         }
-        // 构建镜像
-        stage('Build Image') {
-            steps {
-                echo '--------------------- Build Image Start ---------------------'
-                timeout(time: 10, unit: "MINUTES"){
-                    sh """
-                        cd server
-                        docker build -t ${JOB_NAME}-i .
-                        cd ..
-                    """
-                }
-                echo '--------------------- Build Image End ---------------------'
-            }
-        }
-        // 推送镜像到Harbor
-        stage('Push to Harbor') {
-            steps {
-                echo '--------------------- Push to Harbor Start ---------------------'
-                timeout(time: 5, unit: "MINUTES"){
-                    sh """
-                        docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
-                        docker tag ${JOB_NAME}-i ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}-i
-                        docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}-i
-                    """
-                }
-                echo '--------------------- Push to Harbor End ---------------------'
-            }
-        }
+//         // 构建镜像
+//         stage('Build Image') {
+//             steps {
+//                 echo '--------------------- Build Image Start ---------------------'
+//                 timeout(time: 10, unit: "MINUTES"){
+//                     sh """
+//                         cd server
+//                         docker build -t ${JOB_NAME}-i .
+//                         cd ..
+//                     """
+//                 }
+//                 echo '--------------------- Build Image End ---------------------'
+//             }
+//         }
+//         // 推送镜像到Harbor
+//         stage('Push to Harbor') {
+//             steps {
+//                 echo '--------------------- Push to Harbor Start ---------------------'
+//                 timeout(time: 5, unit: "MINUTES"){
+//                     sh """
+//                         docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
+//                         docker tag ${JOB_NAME}-i ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}-i
+//                         docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}-i
+//                     """
+//                 }
+//                 echo '--------------------- Push to Harbor End ---------------------'
+//             }
+//         }
         // 部署容器
         stage('Deploy') {
             steps {
