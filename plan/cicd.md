@@ -239,6 +239,8 @@ services:
   sonar_db:
     image: postgres
     container_name: sonar_db
+    privileged: true
+    restart: always
     ports:
       - 5432:5432
     networks:
@@ -249,6 +251,8 @@ services:
   sonarqube:
     image: sonarqube:8.9.9-community
     container_name: sonarqube
+    privileged: true
+    restart: always
     depends_on:
       - sonar_db
     ports:
@@ -256,11 +260,13 @@ services:
     networks:
       - sonarnet
     environment:
-      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONAR_JDBC_URL: jdbc:postgresql://sonar_db:5432/sonar
       SONAR_JDBC_USERNAME: sonar
       SONAR_JDBC_PASSWORD: sonar
     volumes:
-      - '/home/opc/tools/node:/usr/bin/node'
+      - '/home/opc/tools/node/bin/node:/usr/bin/node'
+      - '/home/opc/tools/node/bin/npm:/usr/bin/npm'
+      - '/home/opc/tools/node/bin/npx:/usr/bin/npx'
       - '/usr/bin/docker:/usr/bin/docker'
       - '/var/run/docker.sock:/var/run/docker.sock'
 networks:
@@ -364,6 +370,7 @@ vi harbor.yml
 初始帐号密码是：admin Harbor12345
 ```shell
 # 创建harbor容器
+cd /home/opc/tools/harbor
 sudo ./install.sh
 ```
 
@@ -391,6 +398,9 @@ docker push ${harborAddress}/${harborRepo}/${JOB_NAME}-i
 报错 `Error response from daemon: Get "https://10.0.0.167:9002/v2/": http: server gave HTTP response to HTTPS client`，
 
 说明没有建立daemon.json文件，见1.4
+
+编写deploy.sh放入/usr/bin
+
 
 
 
