@@ -172,7 +172,7 @@ pipeline {
                 timeout(time: 10, unit: "MINUTES"){
                     sh """
                         cd server
-                        docker build -t ${JOB_NAME}:${tag}-i .
+                        docker build -t ${JOB_NAME}:${tag} .
                         cd ..
                     """
                 }
@@ -186,8 +186,8 @@ pipeline {
                 timeout(time: 5, unit: "MINUTES"){
                     sh """
                         docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
-                        docker tag ${JOB_NAME}-i ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}-i
-                        docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}-i
+                        docker tag ${JOB_NAME} ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}
+                        docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}
                     """
                 }
                 echo '--------------------- Push to Harbor End ---------------------'
