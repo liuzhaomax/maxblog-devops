@@ -14,7 +14,10 @@ pipeline {
     }
     // 声明全局变量
     environment {
-        key = 'value'
+        harborUsername = "admin"
+        harborPassword = "Harbor12345"
+        harborAddress = "168.138.30.224:9002"
+        harborRepo = "repo"
     }
     // 流水线阶段
     stages {
@@ -162,6 +165,7 @@ pipeline {
 //                 echo '--------------------- Checkmarx End ---------------------'
 //             }
 //         }
+        // 构建镜像
         stage('Build Image') {
             steps {
                 echo '--------------------- Build Image Start ---------------------'
@@ -169,9 +173,24 @@ pipeline {
                     sh """
                         cd server
                         docker build -t ${JOB_NAME}-i .
+                        cd ..
                     """
                 }
                 echo '--------------------- Build Image End ---------------------'
+            }
+        }
+        // 推送镜像到Harbor
+        stage('Push to Harbor') {
+            steps {
+                echo '--------------------- Push to Harbor Start ---------------------'
+                timeout(time: 5, unit: "MINUTES"){
+                    sh """
+                        docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
+                        docker tag ${JOB_NAME}-i ${harborAddress}/${harborRepo}/${JOB_NAME}-i
+                        docker push ${harborAddress}/${harborRepo}/${JOB_NAME}-i
+                    """
+                }
+                echo '--------------------- Push to Harbor End ---------------------'
             }
         }
         stage('Git Tag') {
