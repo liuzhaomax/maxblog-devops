@@ -25,7 +25,7 @@ tag=`docker images | grep ${project} | awk "{print $2}"`
 echo $tag
 
 # shellcheck disable=SC2039
-if [[ $tag =~ $version ]]; then
+if [[ "$tag" =~ "$version" ]]; then
   docker rmi $imageName
 fi
 
