@@ -165,20 +165,20 @@ pipeline {
 //                 echo '--------------------- Checkmarx End ---------------------'
 //             }
 //         }
-//         // 构建镜像
-//         stage('Build Image') {
-//             steps {
-//                 echo '--------------------- Build Image Start ---------------------'
-//                 timeout(time: 10, unit: "MINUTES"){
-//                     sh """
-//                         cd server
-//                         docker build -t ${JOB_NAME}-i .
-//                         cd ..
-//                     """
-//                 }
-//                 echo '--------------------- Build Image End ---------------------'
-//             }
-//         }
+        // 构建镜像
+        stage('Build Image') {
+            steps {
+                echo '--------------------- Build Image Start ---------------------'
+                timeout(time: 10, unit: "MINUTES"){
+                    sh """
+                        cd server
+                        docker build -t ${JOB_NAME}:${tag}-i .
+                        cd ..
+                    """
+                }
+                echo '--------------------- Build Image End ---------------------'
+            }
+        }
         // 推送镜像到Harbor
         stage('Push to Harbor') {
             steps {
