@@ -154,17 +154,19 @@ pipeline {
 //                 echo '--------------------- SonarQube End ---------------------'
 //             }
 //         }
-        // 安全漏洞扫描Nessus
-        stage('Checkmarx') {
-            steps {
-                echo '--------------------- Checkmarx Start ---------------------'
-                echo 'Checkmarx - SUCCESS'
-                echo '--------------------- Checkmarx End ---------------------'
-            }
-        }
+//         // 安全漏洞扫描Nessus
+//         stage('Checkmarx') {
+//             steps {
+//                 echo '--------------------- Checkmarx Start ---------------------'
+//                 echo 'Checkmarx - SUCCESS'
+//                 echo '--------------------- Checkmarx End ---------------------'
+//             }
+//         }
         stage('Build Image') {
             steps {
+                echo '--------------------- Build Image Start ---------------------'
                 echo 'Build Image - SUCCESS'
+                echo '--------------------- Build Image End ---------------------'
             }
         }
         stage('Git Tag') {

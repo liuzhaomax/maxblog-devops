@@ -331,6 +331,14 @@ jenkins安装SonarQube Scanner插件
 <h3>设置代码质量标准</h3>
 ![代码质量标准.png](cicd/代码质量标准.png)
 
+### 3.5 安全漏洞扫描
+checkmarx, Tenable.io CS, Harness
+
+### 3.6 构建镜像
+
+
+
+
 
 
 
