@@ -335,6 +335,27 @@ jenkins安装SonarQube Scanner插件
 checkmarx, Tenable.io CS, Harness
 
 ### 3.6 构建镜像
+镜像仓库Harbor-v2.4.3
+```shell
+# 安装Harbor
+tar -zxvf harbor-offline-installer-v2.4.3.tgz -C /home/opc/tools
+cd /home/opc/tools/harbor
+# 配置harbor
+cp harbor.yml.tmpl harbor.yml
+vi harbor.yml
+```
+![配置harbor.png](cicd/配置harbor.png)
+
+初始帐号密码是：admin Harbor12345
+```shell
+# 创建harbor容器
+sudo ./install.sh
+```
+
+创建一个新项目
+
+![Harbor新项目.png](cicd/Harbor新项目.png)
+
 
 
 

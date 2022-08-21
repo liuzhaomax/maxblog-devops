@@ -165,7 +165,12 @@ pipeline {
         stage('Build Image') {
             steps {
                 echo '--------------------- Build Image Start ---------------------'
-                echo 'Build Image - SUCCESS'
+                timeout(time: 10, unit: "MINUTES"){
+                    sh """
+                        cd server
+                        docker build -t ${JOB_NAME}-i .
+                    """
+                }
                 echo '--------------------- Build Image End ---------------------'
             }
         }
