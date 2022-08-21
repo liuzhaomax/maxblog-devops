@@ -226,6 +226,7 @@ pipeline {
 
         success {
             echo 'SUCCESS 成功'
+            sh "docker image prune -f"
         }
 
         failure {
