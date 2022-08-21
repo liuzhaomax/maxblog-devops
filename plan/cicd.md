@@ -110,6 +110,17 @@ services:
       - './data:/var/jenkins_home'
       - '/usr/bin/docker:/usr/bin/docker'
       - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/etc/docker/daemon.json:/etc/docker/daemon.json'
+```
+
+添加daemon.json，为了后面Harbor登录追加仓库地址信息
+```shell
+sudo vi /etc/docker/daemon.json
+```
+```json
+{
+  "insecure-registries": ["10.0.0.167:9002"]
+}
 ```
 
 
@@ -372,6 +383,12 @@ docker login -u ${harborUsername} --password-stdin ${harborPassword} ${harborAdd
 docker tag ${JOB_NAME}-i ${harborAddress}/${harborRepo}/${JOB_NAME}-i
 docker push ${harborAddress}/${harborRepo}/${JOB_NAME}-i
 ```
+
+报错 `Error response from daemon: Get "https://10.0.0.167:9002/v2/": http: server gave HTTP response to HTTPS client`，
+
+说明没有建立daemon.json文件，见1.4
+
+
 
 
 
