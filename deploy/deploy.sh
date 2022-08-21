@@ -33,6 +33,6 @@ docker login -u admin -p Harbor12345 $harbor_addr
 
 docker pull $imageName
 
-docker run --name=${project} -d --restart=always --privileged=true --network my_net -p ${host_port}:${container_port} -v /home/opc/static/main:/usr/src/app/static ${imageName}
+docker run --name=${project} -d --restart=always --privileged=true -p ${host_port}:${container_port} -v /home/opc/static/main:/usr/src/app/static ${imageName}
 
 echo "SUCCESS: Container Created"
