@@ -16,7 +16,7 @@ pipeline {
     environment {
         harborUsername = "admin"
         harborPassword = "Harbor12345"
-        harborAddress = "168.138.30.224:9002"
+        harborAddress = "10.0.0.167:9002"
         harborRepo = "repo"
     }
     // 流水线阶段
@@ -165,20 +165,20 @@ pipeline {
 //                 echo '--------------------- Checkmarx End ---------------------'
 //             }
 //         }
-        // 构建镜像
-        stage('Build Image') {
-            steps {
-                echo '--------------------- Build Image Start ---------------------'
-                timeout(time: 10, unit: "MINUTES"){
-                    sh """
-                        cd server
-                        docker build -t ${JOB_NAME}-i .
-                        cd ..
-                    """
-                }
-                echo '--------------------- Build Image End ---------------------'
-            }
-        }
+//         // 构建镜像
+//         stage('Build Image') {
+//             steps {
+//                 echo '--------------------- Build Image Start ---------------------'
+//                 timeout(time: 10, unit: "MINUTES"){
+//                     sh """
+//                         cd server
+//                         docker build -t ${JOB_NAME}-i .
+//                         cd ..
+//                     """
+//                 }
+//                 echo '--------------------- Build Image End ---------------------'
+//             }
+//         }
         // 推送镜像到Harbor
         stage('Push to Harbor') {
             steps {

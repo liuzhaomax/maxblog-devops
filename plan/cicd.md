@@ -356,8 +356,22 @@ sudo ./install.sh
 
 ![Harbor新项目.png](cicd/Harbor新项目.png)
 
+在Jenkinsfile定义变量
+```
+environment {
+    harborUsername = "admin"
+    harborPassword = "Harbor12345"
+    harborAddress = "10.0.0.167:9002"
+    harborRepo = "repo"
+}
+```
 
-
+在pipeline的stage里加入
+```shell
+docker login -u ${harborUsername} --password-stdin ${harborPassword} ${harborAddress}
+docker tag ${JOB_NAME}-i ${harborAddress}/${harborRepo}/${JOB_NAME}-i
+docker push ${harborAddress}/${harborRepo}/${JOB_NAME}-i
+```
 
 
 
