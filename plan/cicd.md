@@ -119,7 +119,7 @@ sudo vi /etc/docker/daemon.json
 ```
 ```json
 {
-  "insecure-registries": ["10.0.0.167:9002"]
+  "insecure-registries": ["168.138.30.224:9002"]
 }
 ```
 重启docker
