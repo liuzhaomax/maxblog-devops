@@ -155,11 +155,11 @@ pipeline {
 //             }
 //         }
         // 安全漏洞扫描Nessus
-        stage('Nessus') {
+        stage('Checkmarx') {
             steps {
-                echo '--------------------- Nessus Start ---------------------'
-                echo 'Nessus - SUCCESS'
-                echo '--------------------- Nessus End ---------------------'
+                echo '--------------------- Checkmarx Start ---------------------'
+                echo 'Checkmarx - SUCCESS'
+                echo '--------------------- Checkmarx End ---------------------'
             }
         }
         stage('Build Image') {
