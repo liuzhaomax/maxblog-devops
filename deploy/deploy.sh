@@ -7,8 +7,7 @@ version=$4
 container_port=$5
 host_port=$6
 
-#imageName=$harbor_addr/$harbor_repo/$project:$version
-imageName=$harbor_addr/$harbor_repo/$project
+imageName=$harbor_addr/$harbor_repo/$project:$version
 
 echo $imageName
 
