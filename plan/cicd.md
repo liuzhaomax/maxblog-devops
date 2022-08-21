@@ -122,6 +122,10 @@ sudo vi /etc/docker/daemon.json
   "insecure-registries": ["10.0.0.167:9002"]
 }
 ```
+重启docker
+```shell
+sudo systemctl restart docker
+```
 
 
 ## 2. 配置Jenkins
