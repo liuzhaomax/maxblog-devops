@@ -172,7 +172,7 @@ pipeline {
                 timeout(time: 10, unit: "MINUTES"){
                     sh """
                         cd server
-                        docker build -t ${JOB_NAME}:${tag} .
+                        docker build -t ${JOB_NAME} .
                         cd ..
                     """
                 }
