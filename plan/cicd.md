@@ -408,7 +408,14 @@ sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_p
 ```
 将生成后的shell脚本和上面相同的语句的单引号，改为双引号。
 
-至此CD流程结束
+报错 `npm ERR! network This is a problem related to network connectivity.` 在jenkins容器内部运行如下命令
+```shell
+/var/jenkins_home/node/bin/npm config set registry http://registry.npmjs.org/
+```
+
+至此CD流程结束。之后如果运行时需要package的一些配置，可以增加stage。
+
+pipeline结束后的操作，failed用error收尾
 
 
 
