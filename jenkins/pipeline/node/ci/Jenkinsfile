@@ -1,7 +1,5 @@
 //#!groovy
 
-// String buildShell = "${env.buildShell}"
-
 pipeline {
     // 指定集群节点
     agent any
@@ -26,7 +24,7 @@ pipeline {
             steps {
                 echo '--------------------- Checkout Start ---------------------'
                 timeout(time: 5, unit: "MINUTES"){
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/liuzhaomax/maxblog-fe-main.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: '${branch}']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/liuzhaomax/maxblog-fe-main.git']]])
                 }
                 echo '--------------------- Checkout End ---------------------'
             }
@@ -73,9 +71,9 @@ pipeline {
 //         }
         // 检查App版本
         stage('App Version') {
-            when {
-                buildingTag()
-            }
+//             when {
+//                 // CD构建起作用
+//             }
             steps {
                 echo '--------------------- App Version Start ---------------------'
                 echo 'App Version - SUCCESS'
@@ -165,54 +163,34 @@ pipeline {
 //                 echo '--------------------- Checkmarx End ---------------------'
 //             }
 //         }
-//         // 构建镜像
-//         stage('Build Image') {
-//             steps {
-//                 echo '--------------------- Build Image Start ---------------------'
-//                 timeout(time: 10, unit: "MINUTES"){
-//                     sh """
-//                         cd server
-//                         docker build -t ${JOB_NAME} .
-//                         cd ..
-//                     """
-//                 }
-//                 echo '--------------------- Build Image End ---------------------'
-//             }
-//         }
-//         // 推送镜像到Harbor
-//         stage('Push to Harbor') {
-//             steps {
-//                 echo '--------------------- Push to Harbor Start ---------------------'
-//                 timeout(time: 10, unit: "MINUTES"){
-//                     sh """
-//                         docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
-//                         docker tag ${JOB_NAME} ${harborAddress}/${harborRepo}/${JOB_NAME}
-//                         docker push ${harborAddress}/${harborRepo}/${JOB_NAME}
-//                     """
-//                 }
-//                 echo '--------------------- Push to Harbor End ---------------------'
-//             }
-//         }
-//         // 部署容器
-//         stage('Deploy') {
-//             steps {
-//                 echo '--------------------- Deploy Start ---------------------'
-//                 timeout(time: 10, unit: "MINUTES"){
-//                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_port", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-//                 }
-//                 echo '--------------------- Deploy End ---------------------'
-//             }
-//         }
-//         stage('Git Tag') {
-//             steps {
-//                 echo 'Git Tag - SUCCESS'
-//             }
-//         }
-//         stage('Package Config') {
-//             steps {
-//                 echo 'Package Config - SUCCESS'
-//             }
-//         }
+        // 构建镜像
+        stage('Build Image') {
+            steps {
+                echo '--------------------- Build Image Start ---------------------'
+                timeout(time: 10, unit: "MINUTES"){
+                    sh """
+                        cd server
+                        docker build -t ${JOB_NAME} .
+                        cd ..
+                    """
+                }
+                echo '--------------------- Build Image End ---------------------'
+            }
+        }
+        // 推送镜像到Harbor
+        stage('Push to Harbor') {
+            steps {
+                echo '--------------------- Push to Harbor Start ---------------------'
+                timeout(time: 10, unit: "MINUTES"){
+                    sh """
+                        docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
+                        docker tag ${JOB_NAME} ${harborAddress}/${harborRepo}/${JOB_NAME}
+                        docker push ${harborAddress}/${harborRepo}/${JOB_NAME}
+                    """
+                }
+                echo '--------------------- Push to Harbor End ---------------------'
+            }
+        }
     }
     // 构建后的操作
     post {
