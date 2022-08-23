@@ -183,7 +183,7 @@ pipeline {
         stage('Push to Harbor') {
             steps {
                 echo '--------------------- Push to Harbor Start ---------------------'
-                timeout(time: 5, unit: "MINUTES"){
+                timeout(time: 10, unit: "MINUTES"){
                     sh """
                         docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
                         docker tag ${JOB_NAME} ${harborAddress}/${harborRepo}/${JOB_NAME}
@@ -203,16 +203,16 @@ pipeline {
                 echo '--------------------- Deploy End ---------------------'
             }
         }
-        stage('Git Tag') {
-            steps {
-                echo 'Git Tag - SUCCESS'
-            }
-        }
-        stage('Package Config') {
-            steps {
-                echo 'Package Config - SUCCESS'
-            }
-        }
+//         stage('Git Tag') {
+//             steps {
+//                 echo 'Git Tag - SUCCESS'
+//             }
+//         }
+//         stage('Package Config') {
+//             steps {
+//                 echo 'Package Config - SUCCESS'
+//             }
+//         }
     }
     // 构建后的操作
     post {
