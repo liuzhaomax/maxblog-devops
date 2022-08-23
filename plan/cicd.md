@@ -391,8 +391,8 @@ environment {
 在pipeline的stage里加入
 ```shell
 docker login -u ${harborUsername} --password-stdin ${harborPassword} ${harborAddress}
-docker tag ${JOB_NAME}-i ${harborAddress}/${harborRepo}/${JOB_NAME}-i
-docker push ${harborAddress}/${harborRepo}/${JOB_NAME}-i
+docker tag ${JOB_NAME}:${tag} ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}
+docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}
 ```
 
 报错 `Error response from daemon: Get "https://10.0.0.167:9002/v2/": http: server gave HTTP response to HTTPS client`，
@@ -400,6 +400,15 @@ docker push ${harborAddress}/${harborRepo}/${JOB_NAME}-i
 说明没有建立daemon.json文件，见1.4
 
 编写deploy.sh放入/usr/bin
+
+使用pipeline代码生成，选择`ssh publisher`，输入要执行的shell代码，生成并复制到pipeline
+
+```shell
+sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_port
+```
+将生成后的shell脚本和上面相同的语句的单引号，改为双引号。
+
+至此CD流程结束
 
 
 
