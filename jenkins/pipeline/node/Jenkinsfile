@@ -165,54 +165,69 @@ pipeline {
 //                 echo '--------------------- Checkmarx End ---------------------'
 //             }
 //         }
-//         // 构建镜像
-//         stage('Build Image') {
-//             steps {
-//                 echo '--------------------- Build Image Start ---------------------'
-//                 timeout(time: 10, unit: "MINUTES"){
-//                     sh """
-//                         cd server
-//                         docker build -t ${JOB_NAME} .
-//                         cd ..
-//                     """
-//                 }
-//                 echo '--------------------- Build Image End ---------------------'
+        // 构建镜像
+        stage('Build Image') {
+//             when {
+//                 buildingTag()
 //             }
-//         }
-//         // 推送镜像到Harbor
-//         stage('Push to Harbor') {
-//             steps {
-//                 echo '--------------------- Push to Harbor Start ---------------------'
-//                 timeout(time: 10, unit: "MINUTES"){
-//                     sh """
-//                         docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
-//                         docker tag ${JOB_NAME} ${harborAddress}/${harborRepo}/${JOB_NAME}
-//                         docker push ${harborAddress}/${harborRepo}/${JOB_NAME}
-//                     """
-//                 }
-//                 echo '--------------------- Push to Harbor End ---------------------'
+            steps {
+                echo '--------------------- Build Image Start ---------------------'
+                timeout(time: 10, unit: "MINUTES"){
+                    sh """
+                        cd server
+                        docker build -t ${JOB_NAME} .
+                        cd ..
+                    """
+                }
+                echo '--------------------- Build Image End ---------------------'
+            }
+        }
+        // 推送镜像到Harbor
+        stage('Push to Harbor') {
+//             when {
+//                 buildingTag()
 //             }
-//         }
-//         // 部署容器
-//         stage('Deploy') {
-//             steps {
-//                 echo '--------------------- Deploy Start ---------------------'
-//                 timeout(time: 10, unit: "MINUTES"){
-//                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_port", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-//                 }
-//                 echo '--------------------- Deploy End ---------------------'
+            steps {
+                echo '--------------------- Push to Harbor Start ---------------------'
+                timeout(time: 10, unit: "MINUTES"){
+                    sh """
+                        docker login -u ${harborUsername} -p ${harborPassword} ${harborAddress}
+                        docker tag ${JOB_NAME} ${harborAddress}/${harborRepo}/${JOB_NAME}
+                        docker push ${harborAddress}/${harborRepo}/${JOB_NAME}
+                    """
+                }
+                echo '--------------------- Push to Harbor End ---------------------'
+            }
+        }
+        // 部署容器
+        stage('Deploy') {
+//             when {
+//                 buildingTag()
 //             }
-//         }
-//         stage('Git Tag') {
-//             steps {
-//                 echo 'Git Tag - SUCCESS'
-//             }
-//         }
-//         stage('Package Config') {
-//             steps {
-//                 echo 'Package Config - SUCCESS'
-//             }
-//         }
+            steps {
+                echo '--------------------- Deploy Start ---------------------'
+                timeout(time: 10, unit: "MINUTES"){
+                    sshPublisher(publishers: [sshPublisherDesc(configName: 'test', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_port", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                }
+                echo '--------------------- Deploy End ---------------------'
+            }
+        }
+        stage('Git Tag') {
+            when {
+                buildingTag()
+            }
+            steps {
+                echo 'Git Tag - SUCCESS'
+            }
+        }
+        stage('Package Config') {
+            when {
+                buildingTag()
+            }
+            steps {
+                echo 'Package Config - SUCCESS'
+            }
+        }
     }
     // 构建后的操作
     post {
