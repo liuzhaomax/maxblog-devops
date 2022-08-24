@@ -424,6 +424,8 @@ sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_p
 
 pipeline结束后的操作，failed用error收尾
 
+> npm报错建议回退到npm@6
+
 
 
 
