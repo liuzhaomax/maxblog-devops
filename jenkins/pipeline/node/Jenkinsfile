@@ -48,34 +48,11 @@ pipeline {
 //                 echo '--------------------- Update GitHub End ---------------------'
 //             }
 //         }
-//         // 设置环境，建议跳过
-//         stage('Change Node Version') {
-//             steps {
-//                 echo 'Change Node Version - SUCCESS'
-//             }
-//         }
-//         stage('Change Golang Version') {
-//             steps {
-//                 echo '--------------------- Change Golang Version Start ---------------------'
-//                 script {
-//                     timeout(time: 20, unit: "MINUTES"){
-//                         sh """
-//                             grep "^go .*" go.mod
-//                             cut -f 2 -d
-//                         """
-//                         // echo go version
-//                         // 赋予go env sh 执行权限
-//                         // run set go env sh
-//                     }
-//                 }
-//                 echo '--------------------- Change Golang Version End ---------------------'
-//             }
-//         }
         // 检查App版本
         stage('Version') {
-            when {
-                buildingTag()
-            }
+//             when {
+//                 buildingTag()
+//             }
             steps {
                 echo '--------------------- Version Start ---------------------'
                 echo 'Version: ${tag}'
@@ -88,6 +65,11 @@ pipeline {
                     ${npmHome}/bin/node --version
                     ${npmHome}/bin/npm --version
                 """
+                // grep "^go .*" go.mod
+                // cut -f 2 -d
+                // echo go version
+                // 赋予go env sh 执行权限
+                // run set go env sh
                 echo '--------------------- Version End ---------------------'
             }
         }
