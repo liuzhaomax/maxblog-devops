@@ -175,6 +175,7 @@ mv /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 `Dashboard` → `Configure System`，找到`Publish over SSH`，点击`Add`
 
 ![连接代码仓库.png](cicd/连接代码仓库.png)
+
 这个username是远程服务器的username，密码和私钥也是连接那个服务器用的。
 
 `Test Configuration`测试是否跑通。如果提示路径问题，注意mkdir。显示SUCCESS则保存。
