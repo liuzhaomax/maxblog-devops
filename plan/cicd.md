@@ -402,6 +402,10 @@ docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}
 
 编写deploy.sh放入/usr/bin
 
+```shell
+sudo chmod +x deploy.sh
+```
+
 使用pipeline代码生成，选择`ssh publisher`，输入要执行的shell代码，生成并复制到pipeline
 
 ```shell
