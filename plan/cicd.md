@@ -242,6 +242,7 @@ services:
     container_name: sonar_db
     privileged: true
     restart: always
+    user: root
     ports:
       - 5432:5432
     networks:
@@ -254,6 +255,7 @@ services:
     container_name: sonarqube
     privileged: true
     restart: always
+    user: root
     depends_on:
       - sonar_db
     ports:
