@@ -45,9 +45,6 @@ export GO_HOME=/home/opc/tools/go
 export PATH=$PATH:$NODE_HOME/bin:$GO_HOME/bin
 # 载入环境变量
 source /etc/profile
-
-# 全局安装npm
-npm install -g npm
 ```
 
 ### 1.3 必备工具 - docker，docker-compose
@@ -91,6 +88,9 @@ sudo docker-compose up -d
 sudo chmod -R 777 data
 # 重启Jenkins容器
 sudo docker-compose restart
+# 将node挂载入jenkins容器
+cd /home/opc/tools
+cp -r node /home/opc/docker/jenkins_docker/data
 ```
 
 Jenkins配置文件docker-compose.yaml
