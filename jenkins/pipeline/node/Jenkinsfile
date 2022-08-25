@@ -50,9 +50,6 @@ pipeline {
 //         }
         // 检查App版本
         stage("Version") {
-//             when {
-//                 buildingTag()
-//             }
             steps {
                 echo "--------------------- Version Start ---------------------"
                 echo "App Version: ${tag}"
