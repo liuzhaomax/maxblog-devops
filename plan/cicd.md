@@ -468,7 +468,9 @@ sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_p
 ```
 将生成后的shell脚本和上面相同的语句的单引号，改为双引号。
 
+### 4.6 Harbor报错HTTPS
+报错`Error response from daemon: Get "https://xx.xx.xx.xx:xxxx/v2/": http: server gave HTTP response to HTTPS client`
 
-
+检查pipeline的Harbor的address变量是否和daemon.json中的一致。
 
 
