@@ -457,20 +457,15 @@ ${npmHome}/bin/npm install --max_old_space_size=512
 ssh-keygen -t rsa -b 2048
 ```
 
-### 4.4 报错daemon.json
-报错 `Error response from daemon: Get "https://10.0.0.167:9002/v2/": http: server gave HTTP response to HTTPS client`，
+### 4.4 Harbor报错HTTPS
+报错`Error response from daemon: Get "https://xx.xx.xx.xx:xxxx/v2/": http: server gave HTTP response to HTTPS client`
 
-说明没有建立daemon.json文件，见1.4
+检查pipeline的Harbor的address变量是否和daemon.json中的一致。
 
 ### 4.5 部署脚本运行不成功
 ```shell
 sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_port
 ```
 将生成后的shell脚本和上面相同的语句的单引号，改为双引号。
-
-### 4.6 Harbor报错HTTPS
-报错`Error response from daemon: Get "https://xx.xx.xx.xx:xxxx/v2/": http: server gave HTTP response to HTTPS client`
-
-检查pipeline的Harbor的address变量是否和daemon.json中的一致。
 
 
