@@ -8,7 +8,7 @@
 
 ### 1.1 VM配置要求
 + CPU：2核
-+ 内存：4G
++ 内存：8G
 + 硬盘空间：30G
 + 操作系统：Centos7.9
 ```shell
@@ -72,10 +72,10 @@ docker-compose --version
 ```shell
 # Jenkins
 # 拉取镜像（所用版本为下面）
-docker pull jenkins/jenkins
+sudo docker pull jenkins/jenkins
 sudo docker pull jenkins/jenkins:2.319.3-lts
 # 创建docker-compose.yaml路径
-cd ~
+cd
 mkdir docker
 cd docker
 mkdir jenkins_docker
@@ -91,6 +91,20 @@ sudo docker-compose restart
 # 将node挂载入jenkins容器
 cd /home/opc/tools
 cp -r node /home/opc/docker/jenkins_docker/data
+```
+
+添加daemon.json，为了后面Harbor登录追加仓库地址信息
+```shell
+sudo vi /etc/docker/daemon.json
+```
+```json
+{
+  "insecure-registries": ["168.138.30.224:9002"]
+}
+```
+重启docker
+```shell
+sudo systemctl restart docker
 ```
 
 Jenkins配置文件docker-compose.yaml
@@ -111,20 +125,6 @@ services:
       - '/usr/bin/docker:/usr/bin/docker'
       - '/var/run/docker.sock:/var/run/docker.sock'
       - '/etc/docker/daemon.json:/etc/docker/daemon.json'
-```
-
-添加daemon.json，为了后面Harbor登录追加仓库地址信息
-```shell
-sudo vi /etc/docker/daemon.json
-```
-```json
-{
-  "insecure-registries": ["168.138.30.224:9002"]
-}
-```
-重启docker
-```shell
-sudo systemctl restart docker
 ```
 
 
@@ -165,7 +165,7 @@ mv /home/opc/tools/jdk /home/opc/docker/jenkins_docker/data
 
 ### 2.4 挂载nodejs
 ```shell
-mv /home/opc/tools/node /home/opc/docker/jenkins_docker/data
+cp -r /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 ```
 回到浏览器jenkins的`Dashboard` → `Global Tool Configuration` → `NodeJS` → `NodeJS`，取消自动安装，按下图填写。
 
@@ -308,8 +308,9 @@ vi sonar-scanner.properties
 
 ```shell
 # 使用扫描命令
-cd /home/opc/docker/jenkins_docker/data/workspace
-cd main
+# 运行一次流水线就会产生workspace文件夹
+# cd /home/opc/docker/jenkins_docker/data/workspace
+# cd main  
 /home/opc/docker/jenkins_docker/data/sonar-scanner/bin/sonar-scanner \
     -Dsonar.sources=./ \
     -Dsonar.projectname=${JOB_NAME} \
@@ -398,10 +399,6 @@ docker tag ${JOB_NAME}:${tag} ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}
 docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:${tag}
 ```
 
-报错 `Error response from daemon: Get "https://10.0.0.167:9002/v2/": http: server gave HTTP response to HTTPS client`，
-
-说明没有建立daemon.json文件，见1.4
-
 编写deploy.sh放入/usr/bin
 
 ```shell
@@ -415,23 +412,18 @@ sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_p
 ```
 将生成后的shell脚本和上面相同的语句的单引号，改为双引号。
 
-报错 `npm ERR! network This is a problem related to network connectivity.` 在jenkins容器内部运行如下命令
-```shell
-/var/jenkins_home/node/bin/npm config set registry http://registry.npmjs.org/
-```
-
 至此CD流程结束。之后如果运行时需要package的一些配置，可以增加stage。
 
-pipeline结束后的操作，failed用error收尾
-
-> npm报错建议回退到npm@6
+Pipeline结束后的操作，failed用error收尾。
 
 
 ## 4. 问题
 
 > 注意对于一次性设置，例如export，每一个stage都要设定
+> npm报错建议回退到npm@6
 
 ### 4.1 代理原因卡死，不报错
+报错 `npm ERR! network This is a problem related to network connectivity.`
 ```shell
 ${npmHome}/bin/npm config set registry https://registry.npmjs.org/
 ```
@@ -442,8 +434,29 @@ ${npmHome}/bin/npm config set registry https://registry.npmjs.org/
 ${npmHome}/bin/npm install --max_old_space_size=512
 ```
 
+### 4.3 连接SSH server，test connection不过
+可能是RSA标题不对
 
+使用下面标题，不要含有`OPENSSH`
+```shell
+-----BEGIN RSA PRIVATE KEY-----
+```
 
+生成命令是
+```shell
+ssh-keygen -t rsa -b 2048
+```
+
+### 4.4 报错daemon.json
+报错 `Error response from daemon: Get "https://10.0.0.167:9002/v2/": http: server gave HTTP response to HTTPS client`，
+
+说明没有建立daemon.json文件，见1.4
+
+### 4.5 部署脚本运行不成功
+```shell
+sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_port
+```
+将生成后的shell脚本和上面相同的语句的单引号，改为双引号。
 
 
 
