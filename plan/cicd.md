@@ -468,4 +468,9 @@ sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_p
 ```
 将生成后的shell脚本和上面相同的语句的单引号，改为双引号。
 
+### 4.6 创建容器的脚本执行报错127
+Exec exit status not zero. Status [127]
+
+脚本不存在，或者脚本的依赖不存在，无法执行脚本。
+
 
