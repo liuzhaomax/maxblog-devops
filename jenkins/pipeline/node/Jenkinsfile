@@ -213,7 +213,9 @@ pipeline {
             echo "********************* Pipeline about to Finish *********************"
             echo "********************************************************************"
             echo "********************************************************************"
-            sh "cd .. && rm -rf ${JOB_NAME} ${JOB_NAME}@tmp"
+            sh "cd .."
+            sh "rm -rf ${JOB_NAME}"
+            sh "rm -rf ${JOB_NAME}@tmp"
         }
 
         success {
