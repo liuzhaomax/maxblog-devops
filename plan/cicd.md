@@ -8,7 +8,7 @@
 
 ### 1.1 VM配置要求
 + CPU：2核
-+ 内存：1G
++ 内存：4G
 + 硬盘空间：30G
 + 操作系统：Centos7.9
 ```shell
@@ -425,6 +425,22 @@ sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_p
 pipeline结束后的操作，failed用error收尾
 
 > npm报错建议回退到npm@6
+
+
+## 4. 问题
+
+> 注意对于一次性设置，例如export，每一个stage都要设定
+
+### 4.1 代理原因卡死，不报错
+```shell
+${npmHome}/bin/npm config set registry https://registry.npmjs.org/
+```
+
+### 4.2 内存原因卡死，查看monitor，未卡死时渐满，卡死时monitor调不出
+```shell
+# RAM被限制为512MB
+${npmHome}/bin/npm install --max_old_space_size=512
+```
 
 
 
