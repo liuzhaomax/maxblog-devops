@@ -104,6 +104,7 @@ sudo vi /etc/docker/daemon.json
 ```
 重启docker
 ```shell
+sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
@@ -414,8 +415,17 @@ sudo deploy.sh $harborAddress $harborRepo $JOB_NAME $tag $container_port $host_p
 
 至此CD流程结束。之后如果运行时需要package的一些配置，可以增加stage。
 
-Pipeline结束后的操作，failed用error收尾。
+<h3>设置pipeline结束后的操作</h3>
+failed用error收尾
 
+如果选择每个JOB有不同的保留个数，可以在config里选择`discard a build`，然后生成`buildDiscard`的语法。
+并粘贴进pipeline，与environment并列。
+
+为所有Job设置结束后保留N条流水线运行记录
+
+`Dashboard` → `Configure System`，找到`Global Build Discarders`，点击`Add`
+
+![配置保留任务.png](cicd/配置保留任务.png)
 
 ## 4. 问题
 
