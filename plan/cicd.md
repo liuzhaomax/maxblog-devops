@@ -482,3 +482,10 @@ Exec exit status not zero. Status [127]
 添加`Discover tags`
 
 ![ci发现标签.png](cicd/ci发现标签.png)
+
+### 4.8 sonar报错key不合法
+`ERROR: Malformed key for Project: 'xxx/main'. Allowed characters are alphanumeric, '-', '_', '.' and ':', with at least one non-digit.`
+
+多分支流水线会在JOB前面加入一个文件夹路径，来标记多分支流水线，所以会生成"/"，比如 xxx/main
+
+修改pipeline里，sonar的stage里，projectkey字段。
