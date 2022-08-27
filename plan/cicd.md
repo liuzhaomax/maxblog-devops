@@ -189,17 +189,18 @@ cp -r /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 
 ![流水线脚本.png](cicd/流水线脚本.png)
 
-在图中`Pipeline Syntax`可进入生成指定功能脚本的页面，比如checkout功能的脚本
-
-![生成语法.png](cicd/生成语法.png)
+`Pipeline Syntax`可进入生成指定功能脚本的页面，比如checkout功能的脚本
 
 点击`Generate Pipeline Script`，复制粘贴代码到Jenkinsfile中。
 
 回到Pipeline配置区域 → 选择`Pipeline script from SCM` → 选择`Git`
 
+![配置流水线拉取分支.png](cicd/配置流水线拉取分支.png)
 ![配置流水线脚本地址.png](cicd/配置流水线脚本地址.png)
 
 > 注意：Script Path第一个字符不要"/"
+> 注意：按上图中填写Branch Specifier，才会按照tag构建，如果填写的是*/main，即便选择按tag构建，也只会拉取main分支的代码进行构建。
+> 只有这样，在流水线中的when { buildingTag() } 语法才会起作用。
 
 ### 3.2 拉取代码
 来到项目的Configure，按图中点击

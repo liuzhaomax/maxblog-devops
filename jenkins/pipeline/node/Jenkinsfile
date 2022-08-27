@@ -139,7 +139,7 @@ pipeline {
                                 -Dsonar.projectKey=${JOB_NAME} \
                                 -Dsonar.nodejs.executable=/usr/bin/node \
                                 -Dsonar.inclusions=src/**/*.js,src/**/*.jsx \
-                                -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/* \
+                                -Dsonar.coverage.exclusions=node_modules/**/*,server/build/**/*,config/**/*,scripts/**/*,public/**/*,src/config/**/*,src/app/**/*,src/assets/**/*,src/env/**/*,src/index.js \
                                 -Dsonar.qualitygate.wait=true
                         """
                     }
@@ -157,9 +157,9 @@ pipeline {
 //         }
         // 构建镜像
         stage("Build Image") {
-//             when {
-//                 buildingTag()
-//             }
+            when {
+                buildingTag()
+            }
             steps {
                 echo "--------------------- Build Image Start ---------------------"
                 timeout(time: 10, unit: "MINUTES"){
@@ -174,9 +174,9 @@ pipeline {
         }
         // 推送镜像到Harbor
         stage("Push to Harbor") {
-//             when {
-//                 buildingTag()
-//             }
+            when {
+                buildingTag()
+            }
             steps {
                 echo "--------------------- Push to Harbor Start ---------------------"
                 timeout(time: 10, unit: "MINUTES"){
@@ -191,9 +191,9 @@ pipeline {
         }
         // 部署容器
         stage("Deploy") {
-//             when {
-//                 buildingTag()
-//             }
+            when {
+                buildingTag()
+            }
             steps {
                 echo "--------------------- Deploy Start ---------------------"
                 timeout(time: 10, unit: "MINUTES"){
