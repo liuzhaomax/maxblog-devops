@@ -477,3 +477,8 @@ Exec exit status not zero. Status [127]
 
 + 检查生成语句中.sh执行语句的引号是否为双引号
 + 检查生成语句中.sh执行语句是否需要sudo
+
+### 4.7 在CI的多分支流水线中，无法发现最新版本
+添加`Discover tags`
+
+![ci发现标签.png](cicd/ci发现标签.png)
