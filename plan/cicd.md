@@ -200,7 +200,8 @@ cp -r /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 
 > 注意：Script Path第一个字符不要"/"
 > 注意：按上图中填写Branch Specifier，才会按照tag构建，如果填写的是*/main，即便选择按tag构建，也只会拉取main分支的代码进行构建。
-> 只有这样，在流水线中的when { buildingTag() } 语法才会起作用。
+> 不知为何，when { buildingTag() } 语法不起作用。可能是只在多分支流水线中才有用。
+> 目前CI/CD的流水线是分离的。
 
 ### 3.2 拉取代码
 来到项目的Configure，按图中点击

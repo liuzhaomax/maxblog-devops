@@ -33,6 +33,14 @@ docker login -u admin -p Harbor12345 $harbor_addr
 
 docker pull $imageName
 
+
+# shellcheck disable=SC2039
+# shellcheck disable=SC2053
+if [[ $tag == $version ]]; then
+  docker stop project
+  docker rm project
+fi
+
 docker run --name=${project} -d --restart=always --privileged=true -p ${host_port}:${container_port} -v /home/opc/static/main:/usr/src/app/static ${imageName}
 
 echo "SUCCESS: Container Created"
