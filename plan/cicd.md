@@ -489,3 +489,6 @@ Exec exit status not zero. Status [127]
 多分支流水线会在JOB前面加入一个文件夹路径，来标记多分支流水线，所以会生成"/"，比如 xxx/main
 
 修改pipeline里，sonar的stage里，projectkey字段。
+
+## 5. PR触发CI
+
