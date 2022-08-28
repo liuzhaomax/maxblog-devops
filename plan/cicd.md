@@ -492,3 +492,27 @@ Exec exit status not zero. Status [127]
 
 ## 5. PR触发CI
 
+### 5.1 安装插件
+`GitHub Pull Request Builder`
+
+### 5.2 配置JOB
+`Dashboard` → `Configure System`，找到`GitHub Pull Request Builder`
+
+![配置githubPR插件.png](cicd/配置githubPR插件.png)
+
+### 5.3 配置webhook
+github setting里，github pr builder插件的access token要加上hook相关的权限。
+
+![webhook配置1.png](cicd/webhook配置1.png)
+
+secret在jenkins的user config里面生成API token
+
+下面选上`pull request`
+
+成功后显示`√`，见下图
+
+![webhook配置2.png](webhook配置2.png)
+
+### 5.4 配置action
+在项目中添加`.github/workflow/xxx.yaml`文件
+
