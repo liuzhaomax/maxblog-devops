@@ -30,3 +30,4 @@
 | SonarQube | -                  | 9001 | 9000 | sonarqube          |
 | Harbor    | -                  | 9002 | 8080 | nginx (harbor-xxx) |
 | Consul    | -                  | 9003 | 8500 | consul             |
+| Nacos     | -                  | 9004 | 8848 | nacos              |
