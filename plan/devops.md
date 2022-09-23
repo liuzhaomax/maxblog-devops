@@ -65,8 +65,10 @@ cd pkg
 tar -zxvf jdk-8u333-linux-aarch64.tar.gz -C /home/opc/tools
 # node-v16
 tar xf node-v16.17.0-linux-x64.tar.xz -C /home/opc/tools
-# go1.17
-tar -zxvf go1.17.5.linux-amd64.tar.gz -C /home/opc/tools
+# go1.19
+tar -zxvf go1.19.1.linux-amd64.tar.gz -C /home/opc/tools
+# golangci-lint
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /home/opc/tools/go/bin v1.49.0
 
 # 修改文件名 （go不用改）
 cd /home/opc/tools
@@ -128,6 +130,9 @@ sudo docker-compose restart
 # 将node挂载入jenkins容器
 cd /home/opc/tools
 cp -r node /home/opc/docker/jenkins_docker/data
+# 将go挂载入jenkins容器
+cd /home/opc/tools
+cp -r go /home/opc/docker/jenkins_docker/data
 ```
 
 添加daemon.json，为了后面Harbor登录追加仓库地址信息
@@ -162,6 +167,8 @@ services:
       - './data:/var/jenkins_home'
       - '/usr/bin/docker:/usr/bin/docker'
       - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/home/opc/tools/node/bin/node:/usr/bin/node'
+      - '/home/opc/tools/go/bin/go:/usr/bin/go'
       - '/etc/docker/daemon.json:/etc/docker/daemon.json'
 ```
 
@@ -310,6 +317,7 @@ services:
       - '/home/opc/tools/node/bin/node:/usr/bin/node'
       - '/home/opc/tools/node/bin/npm:/usr/bin/npm'
       - '/home/opc/tools/node/bin/npx:/usr/bin/npx'
+      - '/home/opc/tools/go/bin/go:/usr/bin/go'
       - '/usr/bin/docker:/usr/bin/docker'
       - '/var/run/docker.sock:/var/run/docker.sock'
 networks:

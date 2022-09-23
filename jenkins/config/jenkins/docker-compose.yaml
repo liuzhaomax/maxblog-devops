@@ -14,4 +14,5 @@ services:
       - '/usr/bin/docker:/usr/bin/docker'
       - '/var/run/docker.sock:/var/run/docker.sock'
       - '/home/opc/tools/node/bin/node:/usr/bin/node'
+      - '/home/opc/tools/go/bin/go:/usr/bin/go'
       - '/etc/docker/daemon.json:/etc/docker/daemon.json'
