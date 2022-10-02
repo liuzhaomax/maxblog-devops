@@ -348,6 +348,8 @@ vi sonar-scanner.properties
 撤销注释并修改 `sonar.host.url=http://宿主机ip:9001`<br/>
 撤销UTF-8注释
 
+![sonar-scanner属性设置.png](devops/sonar-scanner属性设置.png)
+
 给sonar-scanner设置token，来到浏览器sonar面板右上角
 
 ![sonar-scanner设置token.png](devops/sonar-scanner设置token.png)
