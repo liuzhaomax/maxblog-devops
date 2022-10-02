@@ -527,6 +527,7 @@ Exec exit status not zero. Status [127]
 添加`Discover tags`
 
 ![ci发现标签.png](devops/ci发现标签.png)
+![ref.png](devops/ref.png)
 
 ### 4.8 sonar报错key不合法
 `ERROR: Malformed key for Project: 'xxx/main'. Allowed characters are alphanumeric, '-', '_', '.' and ':', with at least one non-digit.`
