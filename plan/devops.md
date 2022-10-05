@@ -372,7 +372,7 @@ vi sonar-scanner.properties
     -Dsonar.qualitygate.wait=true
 ```
 
-成功会看到
+成功会看到：
 
 ![sonar-scanner成功.png](devops/sonar-scanner成功.png)
 
