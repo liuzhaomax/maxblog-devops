@@ -10,10 +10,10 @@
 | 中台统计      | maxblog-me-stats   | 9203 | 9203 | me_stats           | 主页浏览量aa/bb ×  文章统计× 样例统计×             |
 | 中台搜索      | maxblog-me-search  | 9204 | 9204 | me_search          | ×                                     |
 | 后端用户      | maxblog-be-user    | 9301 | 9301 | be_user            | √√√√√√√√√                             |
-| 后端主页      | maxblog-be-home    | 9302 | 9302 | be_home            | ×                                     |
-| 后端文章      | maxblog-be-article | 9303 | 9303 | be_article         | ×                                     |
-| 后端样例      | maxblog-be-demo    | 9304 | 9304 | be_demo            | √√√√√√√√√                             |
-| 后端项目      | maxblog-be-project | 9305 | 9305 | be_project         | ×                                     |
+| 后端主页      | maxblog-be-main    | 9302 | 9302 | be_main            | ×                                     |
+| ~~后端文章~~  | maxblog-be-article | 9303 | 9303 | be_article         | ×                                     |
+| ~~后端样例~~  | maxblog-be-demo    | 9304 | 9304 | be_demo            | √√√√√√√√√                             |
+| ~~后端项目~~  | maxblog-be-project | 9305 | 9305 | be_project         | ×                                     |
 | MySQL主    | -                  | 3306 | 3306 | mysql_master       | √√√√√√√√√√                            |
 | MySQL从1   | -                  | 3307 | 3306 | mysql_slave1       | ×                                     |
 | MySQL从2   | -                  | 3308 | 3306 | mysql_slave2       | ×                                     |
