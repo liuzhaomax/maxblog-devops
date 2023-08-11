@@ -4,11 +4,11 @@
 |:----------|:-------------------|:----:|:----:|:-------------------|:--------------------------------------|
 | 前端主站      | maxblog-fe-main    | 9101 | 9101 | fe_main            | 主页：传入哪些数据x 文章× 样例：布局完成未检验复杂数据 项目× 统计x |
 | 前端后台      | maxblog-fe-admin   | 9102 | 9102 | fe_admin           | 登录√ 其他x                               |
-| 前端搜索      | maxblog-fe-search  | 9103 | 9103 | fe_search          | 使用vue3 ×                              |
+| ~~前端搜索~~      | maxblog-fe-search  | 9103 | 9103 | fe_search          | 使用vue3 ×                              |
 | 中台后台      | maxblog-me-admin   | 9201 | 9201 | me_admin           | 用户√ 其他×                               |
 | 中台主站      | maxblog-me-main    | 9202 | 9202 | me_main            | 主页× 文章× 样例√ 项目×                       |
 | 中台统计      | maxblog-me-stats   | 9203 | 9203 | me_stats           | 主页浏览量aa/bb ×  文章统计× 样例统计×             |
-| 中台搜索      | maxblog-me-search  | 9204 | 9204 | me_search          | ×                                     |
+| ~~中台搜索~~      | maxblog-me-search  | 9204 | 9204 | me_search          | ×                                     |
 | 后端用户      | maxblog-be-user    | 9301 | 9301 | be_user            | √√√√√√√√√                             |
 | 后端主页      | maxblog-be-main    | 9302 | 9302 | be_main            | ×                                     |
 | ~~后端文章~~  | maxblog-be-article | 9303 | 9303 | be_article         | ×                                     |
