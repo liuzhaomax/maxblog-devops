@@ -33,7 +33,10 @@ MySQL
 ## 11. 集群
 OCP4
 
-## 12. CI/CD
+## 12. 限流 熔断 降级
+Sentinel
+
+## 13. CI/CD
 Jenkins流水线
 1. checkout
 2. app version
