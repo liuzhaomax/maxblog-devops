@@ -23,3 +23,27 @@ RocketMQ
 
 ## 8. 分布式事务
 DTM
+
+## 9. 缓存
+Redis
+
+## 10. 数据库
+MySQL
+
+## 11. 集群
+OCP4
+
+## 12. CI/CD
+Jenkins流水线
+1. checkout
+2. app version
+3. lint: golangci-lint
+4. build
+5. 静态扫描: sonarqube
+6. 漏洞扫描: nessus
+7. 安全扫描: blackduck
+8. build image Harbour
+9. git tag
+10. package config
+11. create package
+12. deploy package
