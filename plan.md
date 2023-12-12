@@ -50,3 +50,11 @@ Jenkins流水线
 10. package config
 11. create package
 12. deploy package
+
+## 14. 微服务架构
+1. 框架：gin
+2. 通信：grpc
+3. 依赖注入：wire
+4. 日志：logrus
+5. 拦截器：权限RSA+JWT+crypto，跨域
+6. 读取配置：viper
