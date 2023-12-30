@@ -15,12 +15,12 @@
 | Redis从1   | -                | 6380 | 6379 | redis_slave1       | ×                                           |
 | Redis从2   | -                | 6381 | 6379 | redis_slave2       | ×                                           |
 | Postgres  | -                | 5432 | 5432 | sonar_db           | √√√√√√√√√√                                  |
+| Vault     | -                | 8200 | 8200 | vault              | √√√√√√××××                                  |
 | Jenkins   | -                | 9000 | 8080 | jenkins            | √√√√√√√√√√                                  |
 | SonarQube | -                | 9001 | 9000 | sonarqube          | √√√√√√√√√√                                  |
 | Harbor    | -                | 9002 | 8080 | nginx (harbor-xxx) | √√√√√√√√√√                                  |
 | Consul    | -                | 9003 | 8500 | consul             | ××××××××××                                  |
 | Nacos     | -                | 9004 | 8848 | nacos              | ××××××××××                                  |
-| Vault     | -                | 9005 | 8200 | vault              | √√√√√√××××                                  |
 
 
 # 端口映射
