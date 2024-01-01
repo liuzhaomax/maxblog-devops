@@ -48,7 +48,6 @@ paths:
         - $ref: '#/components/parameters/Span_id'
         - $ref: '#/components/parameters/Parent_id'
         - $ref: '#/components/parameters/App_id'
-        - $ref: '#/components/parameters/Signature'
   /login:
     get:
       summary: Get Public Key for Login
@@ -70,7 +69,6 @@ paths:
         - $ref: '#/components/parameters/Span_id'
         - $ref: '#/components/parameters/Parent_id'
         - $ref: '#/components/parameters/App_id'
-        - $ref: '#/components/parameters/Signature'
     post:
       summary: Login with Username and Password
       tags:
@@ -92,7 +90,6 @@ paths:
         - $ref: '#/components/parameters/Span_id'
         - $ref: '#/components/parameters/Parent_id'
         - $ref: '#/components/parameters/App_id'
-        - $ref: '#/components/parameters/Signature'
       description: 用户登录
       requestBody:
         $ref: '#/components/requestBodies/Login'
@@ -326,13 +323,6 @@ components:
       schema:
         type: string
       description: App ID
-    Signature:
-      name: Signature
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Signature
   requestBodies:
     Login:
       content:
