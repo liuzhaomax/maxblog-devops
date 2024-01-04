@@ -1,28 +1,28 @@
 # 端口映射
 
-| 服务名           | Repo             | 主机端口 | 容器端口 | 容器名                | 工作进度                                        |
-|:--------------|:-----------------|:----:|:----:|:-------------------|:--------------------------------------------|
-| 前端主站          | maxblog-fe-main  | 9101 | 9101 | fe_main            | 主页：传入哪些数据x 文章× 样例：布局完成未检验复杂数据 项目× 统计x       |
-| 前端后台          | maxblog-fe-admin | 9102 | 9102 | fe_admin           | 登录√ 其他x                                     |
-| 中台统计          | maxblog-stats    | 9201 | 9201 | me_stats           | 主页浏览量aa/bb ×  文章统计× 样例统计× 不与数据库相连，直接与主页后端通信 |
-| 后端用户          | maxblog-user     | 9301 | 9301 | be_user            | √√√√√√√√√                                   |
-| 后端主页          | maxblog-main     | 9302 | 9302 | be_main            | ×                                           |
-| SGW           | maxblog-sgw      | 9302 | 9302 | sgw                | ×                                           |
-| MySQL主        | -                | 3306 | 3306 | mysql_master       | √√√√√√√√√√                                  |
-| MySQL从1       | -                | 3307 | 3306 | mysql_slave1       | ×                                           |
-| MySQL从2       | -                | 3308 | 3306 | mysql_slave2       | ×                                           |
-| Redis主        | -                | 6379 | 6379 | redis_master       | ×                                           |
-| Redis从1       | -                | 6380 | 6379 | redis_slave1       | ×                                           |
-| Redis从2       | -                | 6381 | 6379 | redis_slave2       | ×                                           |
-| Postgres      | -                | 5432 | 5432 | sonar_db           | √√√√√√√√√√                                  |
-| Vault         | -                | 8200 | 8200 | vault              | √√√√√√××××                                  |
-| Jenkins       | -                | 9000 | 8080 | jenkins            | √√√√√√√√√√                                  |
-| SonarQube     | -                | 9001 | 9000 | sonarqube          | √√√√√√√√√√                                  |
-| Harbor        | -                | 9002 | 8080 | nginx (harbor-xxx) | √√√√√√√√√√                                  |
-| ETCD leader   | -                | 2379 | 2379 | etcd_l             | ××××××××××                                  |
-| ETCD follower | -                | 2380 | 2380 | etcd_f1            | ××××××××××                                  |
-| ETCD follower | -                | 2381 | 2381 | etcd_f2            | ××××××××××                                  |
-| Nacos         | -                | 9004 | 8848 | nacos              | ××××××××××                                  |
+| 服务名            | Repo             | 主机端口 | 容器端口 | 容器名                | 工作进度                                        |
+|:---------------|:-----------------|:----:|:----:|:-------------------|:--------------------------------------------|
+| 前端主站           | maxblog-fe-main  | 9101 | 9101 | fe_main            | 主页：传入哪些数据x 文章× 样例：布局完成未检验复杂数据 项目× 统计x       |
+| 前端后台           | maxblog-fe-admin | 9102 | 9102 | fe_admin           | 登录√ 其他x                                     |
+| 中台统计           | maxblog-stats    | 9201 | 9201 | me_stats           | 主页浏览量aa/bb ×  文章统计× 样例统计× 不与数据库相连，直接与主页后端通信 |
+| 后端用户           | maxblog-user     | 9301 | 9301 | be_user            | √√√√√√√√√                                   |
+| 后端主页           | maxblog-main     | 9302 | 9302 | be_main            | ×                                           |
+| SGW            | maxblog-sgw      | 9001 | 9001 | sgw                | ×                                           |
+| MySQL主         | -                | 3306 | 3306 | mysql_master       | √√√√√√√√√√                                  |
+| MySQL从1        | -                | 3307 | 3306 | mysql_slave1       | ×                                           |
+| MySQL从2        | -                | 3308 | 3306 | mysql_slave2       | ×                                           |
+| Redis主         | -                | 6379 | 6379 | redis_master       | ×                                           |
+| Redis从1        | -                | 6380 | 6379 | redis_slave1       | ×                                           |
+| Redis从2        | -                | 6381 | 6379 | redis_slave2       | ×                                           |
+| Postgres       | -                | 5432 | 5432 | sonar_db           | √√√√√√√√√√                                  |
+| Vault          | -                | 8200 | 8200 | vault              | √√√√√√××××                                  |
+| Jenkins        | -                | 9000 | 8080 | jenkins            | √√√√√√√√√√                                  |
+| SonarQube      | -                | 9001 | 9000 | sonarqube          | √√√√√√√√√√                                  |
+| Harbor         | -                | 9002 | 8080 | nginx (harbor-xxx) | √√√√√√√√√√                                  |
+| ETCD leader    | -                | 2379 | 2379 | etcd_l             | ××××××××××                                  |
+| ETCD follower1 | -                | 2380 | 2380 | etcd_f1            | ××××××××××                                  |
+| ETCD follower2 | -                | 2381 | 2381 | etcd_f2            | ××××××××××                                  |
+| Nacos          | -                | 9004 | 8848 | nacos              | ××××××××××                                  |
 
 
 # 端口映射
