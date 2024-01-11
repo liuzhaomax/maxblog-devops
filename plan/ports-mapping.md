@@ -11,11 +11,11 @@
 | MySQL主         | -                | 3306 | 3306 | mysql_master       | √√√√√√√√√√                                  |
 | MySQL从1        | -                | 3307 | 3306 | mysql_slave1       | ×                                           |
 | MySQL从2        | -                | 3308 | 3306 | mysql_slave2       | ×                                           |
-| Redis主         | -                | 6379 | 6379 | redis_master       | ×                                           |
+| Redis主         | -                | 6379 | 6379 | redis_master       | √√√√√√√√√√                                  |
 | Redis从1        | -                | 6380 | 6379 | redis_slave1       | ×                                           |
 | Redis从2        | -                | 6381 | 6379 | redis_slave2       | ×                                           |
 | Postgres       | -                | 5432 | 5432 | sonar_db           | √√√√√√√√√√                                  |
-| Vault          | -                | 8200 | 8200 | vault              | √√√√√√××××                                  |
+| Vault          | -                | 8200 | 8200 | vault              | √√√√√√√√√√                                  |
 | Jenkins        | -                | 9000 | 8080 | jenkins            | √√√√√√√√√√                                  |
 | SonarQube      | -                | 9001 | 9000 | sonarqube          | √√√√√√√√√√                                  |
 | Harbor         | -                | 9002 | 8080 | nginx (harbor-xxx) | √√√√√√√√√√                                  |
