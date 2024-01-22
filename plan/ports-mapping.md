@@ -19,9 +19,10 @@
 | Jenkins        | -                | 9000  | 8080  | jenkins            | √√√√√√√√√√                                  |
 | SonarQube      | -                | 9001  | 9000  | sonarqube          | √√√√√√√√√√                                  |
 | Harbor         | -                | 9002  | 8080  | nginx (harbor-xxx) | √√√√√√√√√√                                  |
-| ETCD leader    | -                | 2379  | 2379  | etcd0              | √√√√√√√√√√                                  |
-| ETCD follower1 | -                | 12379 | 12379 | etcd1              | √√√√√√√√√√                                  |
-| ETCD follower2 | -                | 22379 | 22379 | etcd2              | √√√√√√√√√√                                  |
+| ETCD leader    | -                | 2379  | 2379  | etcd0              | √√√√√√√√√√  2380                            |
+| ETCD follower1 | -                | 12379 | 12379 | etcd1              | √√√√√√√√√√  12380                           |
+| ETCD follower2 | -                | 22379 | 22379 | etcd2              | √√√√√√√√√√  22380                           |
+| Consul         | -                | 8500  | 8500  | consul0 1 2 3      | √√√√√√√√√√  consul3是client                  |
 | Nacos          | -                | 9004  | 8848  | nacos              | ××××××××××                                  |
 
 
