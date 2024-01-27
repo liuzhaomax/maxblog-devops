@@ -23,7 +23,6 @@
 | ETCD follower1 | -                | 12379 | 12379 | etcd1              | √√√√√√√√√√  12380                           |
 | ETCD follower2 | -                | 22379 | 22379 | etcd2              | √√√√√√√√√√  22380                           |
 | Consul         | -                | 8500  | 8500  | consul0 1 2 3      | √√√√√√√√√√  consul3是client                  |
-| Nacos          | -                | 9004  | 8848  | nacos              | ××××××××××                                  |
 | Jaeger         | -                | 6831  | 6831  | nacos              | √√√√√√√√√√  16686是client                    |
 
 
