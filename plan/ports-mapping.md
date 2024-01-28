@@ -29,7 +29,7 @@
 | cadvisor       | -                | 8080  | 8080  | cadvisor                | √√√√√√√√√√                                           |
 | node_exporter  | -                | 9100  | 9100  | node_exporter           | √√√√√√√√√√                                           |
 | nginx_exporter | -                | 9113  | 9113  | nginx_exporter           | √√√√√√√√√√                                           |
-| Grafana        | -                | 3000  | 3000  | grafana                 | ××××××××××                                           |
+| Grafana        | -                | 3000  | 3000  | grafana                 | √√√√√√√√√√                                           |
 
 
 # 端口映射
