@@ -33,6 +33,7 @@
 | ElasticSearch  | -                | 9200  | 9200  | elasticsearch      | √√√√√√√√√√  9300                                    |
 | Kibana         | -                | 5601  | 5601  | kibana             | √√√√√√√√√√                                          |
 | Logstash       | -                | 5044  | 5044  | logstash           | √√√√√√√√√√                                          |
+| Filebeat       | -                |   -   |   -   | filebeat           | √√√√√√√√√√                                          |
 
 
 # 端口映射
