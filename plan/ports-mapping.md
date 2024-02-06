@@ -34,6 +34,7 @@
 | Kibana         | -                | 5601  | 5601  | kibana             | √√√√√√√√√√                                          |
 | Logstash       | -                | 5044  | 5044  | logstash           | √√√√√√√√√√                                          |
 | Filebeat       | -                |   -   |   -   | filebeat           | √√√√√√√√√√                                          |
+| Sentinel       | -                | 8858  | 8858  | sentinel           | √√√√√√√√√√                                          |
 
 
 # 端口映射
