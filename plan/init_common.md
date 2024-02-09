@@ -32,6 +32,10 @@
 
 4. 进入用户全局`Settings`，进入`Applications`,找到`jenkins-go-maxms`，点击`Configuration`，在`Repository access`中，将maxblog-sgw加进去
 
+### 1.4 数据库
+
+如果用到数据库模块，需要在数据库中添加对应名称的数据库
+
 ## 2. Jenkins
 
 ### 2.1 Job
