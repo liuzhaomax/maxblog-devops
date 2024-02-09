@@ -19,7 +19,8 @@
 5. 检查依赖，运行`make wire`
 6. 运行`make lint`
 7. 调用script，获取contract
-8. commit
+8. `make run`
+9. commit
 
 ### 1.3 配置代码仓库
 
