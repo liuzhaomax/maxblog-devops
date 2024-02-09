@@ -7,7 +7,7 @@
 | 中台统计           | maxblog-stats    | 9701  | 9701  | me_stats           | 主页浏览量aa/bb ×  文章统计× 样例统计× 不与数据库相连，直接与主页后端通信         |
 | 后端用户           | maxblog-user     | 9801  | 9801  | be_user            | √√√√√√√√√                                           |
 | 后端主页           | maxblog-main     | 9802  | 9802  | be_main            | ×                                                   |
-| SGW            | maxblog-sgw      | 9999  | 9999  | sgw                | ×                                                   |
+| SGW            | maxblog-sgw      | 9999  | 9999  | sgw                | √√√√√√√√√√                                                   |
 | MySQL主         | -                | 3306  | 3306  | mysql_master       | √√√√√√√√√√                                          |
 | MySQL从1        | -                | 3307  | 3306  | mysql_slave1       | ×                                                   |
 | MySQL从2        | -                | 3308  | 3306  | mysql_slave2       | ×                                                   |
