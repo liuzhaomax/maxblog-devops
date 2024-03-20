@@ -2,8 +2,8 @@
 
 | 服务名            | Repo             | 主机端口  | 容器端口  | 容器名                    | 工作进度                                                |
 |:---------------|:-----------------|:-----:|:-----:|:-----------------------|:----------------------------------------------------|
-| 前端主站           | maxblog-fe-main  | 9601  | 9601  | maxblog-fe-main_main   | 主页：传入哪些数据x 文章× 样例：布局完成未检验复杂数据 项目× 统计x               |
-| 前端后台           | maxblog-fe-admin | 9602  | 9602  | maxblog-fe-admin_main  | 登录√ 其他x                                             |
+| 前端主站           | maxblog-main-fe  | 9601  | 9601  | maxblog-main-fe_main   | 主页：传入哪些数据x 文章× 样例：布局完成未检验复杂数据 项目× 统计x               |
+| 前端后台           | maxblog-admin-fe | 9602  | 9602  | maxblog-admin-fe_main  | 登录√ 其他x                                             |
 | 中台统计           | maxblog-stats    | 9701  | 9701  | maxblog-stats_main     | 主页浏览量aa/bb ×  文章统计× 样例统计× 不与数据库相连，直接与主页后端通信         |
 | 后端用户           | maxblog-user     | 9801  | 9801  | maxblog-user_main      | √√√√√√√√√                                           |
 | 后端主页           | maxblog-main     | 9802  | 9802  | maxblog-main_main      | ×                                                   |
