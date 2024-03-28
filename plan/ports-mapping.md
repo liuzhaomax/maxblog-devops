@@ -37,7 +37,7 @@
 | Sentinel         | -                | 8858  | 8858  | sentinel              | √√√√√√√√√√                                          |
 | RocketMQ-console | -                | 9877  | 8080  | rocketmq_console      | √√√√√√√√√√                                          |
 | RocketMQ-namesrv | -                | 9876  | 9876  | rocketmq_namesrv      | √√√√√√√√√√                                          |
-| RocketMQ-broker  | -                | 10909 | 10909  | rocketmq_broker       | √√√√√√√√√√  10911                                   |
+| RocketMQ-broker  | -                | 10909 | 10909 | rocketmq_broker       | √√√√√√√√√√  10911                                   |
 
 
 # 端口映射
