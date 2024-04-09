@@ -48,7 +48,7 @@ paths:
     get:
       summary: Get Article by ID
       tags:
-        - tag
+        - article
       responses:
         '200':
           $ref: '#/components/responses/200-get-article-by-id'
