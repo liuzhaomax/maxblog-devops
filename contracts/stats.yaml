@@ -29,8 +29,6 @@ paths:
           $ref: '#/components/responses/200-get-stats-article-main'
         '400':
           $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
       parameters:
@@ -90,21 +88,6 @@ components:
                 status:
                   code: 400
                   desc: 缺少参数
-    '401':
-      description: 未授权
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                $ref: '#/components/schemas/Status'
-          examples:
-            Example 1:
-              value:
-                status:
-                  code: 401
-                  desc: 未授权
     '500':
       description: 内部错误
       content:
