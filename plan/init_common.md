@@ -10,7 +10,7 @@
 
 ### 1.2 代码操作
 
-1. 将所有`go-maxms`替换为`maxblog-sgw`
+1. 将所有`go-maxms`替换为`maxblog-sgw`，注意修改jenkins的全局变量`StaticFolderName`
 2. 检查所需组件
     + 数据库
     + HTTP/RPC
